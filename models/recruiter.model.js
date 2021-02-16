@@ -33,9 +33,10 @@ const recruiterSchema = new Schema(
         type: Number,
         required: [true, 'Telefone é obrigatório'],
       },
+
       company: {
         type: String,
-        required: [true, 'Cidade é obrigatório'],
+        required: [true, 'Empresa é obrigatório'],
       },
   },
   {
