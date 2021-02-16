@@ -35,7 +35,7 @@ const recruiterSchema = new Schema(
       },
       company: {
         type: String,
-        required: [true, 'Cidade é obrigatório'],
+        required: [true, 'Empresa é obrigatório'],
       },
   },
   {
