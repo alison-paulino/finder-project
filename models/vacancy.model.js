@@ -24,7 +24,7 @@ const vacancySchema = new Schema(
   },
     company: {
     type: String,
-    required: [true, 'Cidade é obrigatório'],
+    required: [true, 'Empresa é obrigatório'],
     },
   recruiter_id: {  
     type: mongoose.Schema.Types.ObjectId, ref: 'Recruiter'
