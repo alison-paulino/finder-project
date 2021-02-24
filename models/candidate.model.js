@@ -7,7 +7,11 @@ const candidateSchema = new Schema(
             type: String,
             time: true,
             required: [true, 'Nome é obrigatório.'],
+<<<<<<< HEAD
             
+=======
+        
+>>>>>>> 2d28f0f29f17ff5749f0665c4ce9dff00d6461ce
         },
         lastName: {
             type: String,

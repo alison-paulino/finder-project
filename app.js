@@ -20,10 +20,16 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
+
+require("./configs/db.configs")
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+require("./configs/session.configs")(app);
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -63,5 +69,12 @@ const loginRecruiter = require('./routes/auth.recruiter.routes');
 app.use('/login', loginRecruiter);
 const logoutRecruiter = require('./routes/auth.recruiter.routes');
 app.use('/logout', logoutRecruiter);
+const candidate = require('./routes/candidate.routes');
+app.use('/', candidate);
+const profileCandidate = require('./routes/candidate.routes');
+app.use('/profile', profileCandidate);
+const create = require('./routes/authCandidate.routes');
+app.use('/', create)
+
 
 module.exports = app;
