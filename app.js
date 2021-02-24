@@ -10,7 +10,8 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
-mongoose
+/*
+mongoose 
   .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/finderDB?retryWrites=true&w=majority`, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -18,11 +19,17 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
+*/
+
+require("./configs/db.configs")
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+require("./configs/session.configs")(app);
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -53,6 +60,12 @@ app.locals.title = 'Express - Generated with IronGenerator project Finder';
 
 const index = require('./routes/index');
 app.use('/', index);
+const candidate = require('./routes/candidate.routes');
+app.use('/', candidate);
+const profileCandidate = require('./routes/candidate.routes');
+app.use('/profile', profileCandidate);
+const create = require('./routes/authCandidate.routes');
+app.use('/', create)
 
 
 module.exports = app;
