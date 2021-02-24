@@ -64,13 +64,4 @@ app.use('/login', loginRecruiter);
 const logoutRecruiter = require('./routes/auth.recruiter.routes');
 app.use('/logout', logoutRecruiter);
 
-
-const candidate = require('./routes/candidate.routes');
-app.use('/', candidate);
-//const profileCandidate = require('./routes/candidate.routes');
-//app.use('/profile', profileCandidate);
-
-
-
-
 module.exports = app;
