@@ -7,7 +7,7 @@ const candidateSchema = new Schema(
             type: String,
             time: true,
             required: [true, 'Nome é obrigatório.'],
-            unique: true
+            
         },
         lastName: {
             type: String,

@@ -1,0 +1,35 @@
+<h1>Bem-vindo ao seu perfil {{name}}</h1>
+
+<h2>Por favor, complete o seu cadastro</h2>
+
+<form action="/candidatePre" method="POST">
+  <label for="name">Nome</label>
+  <input type="text" name="name" id="name-candidate" placeholder="Nome" value="{{name}}">
+  <br><br>
+  <label for="lastName">Sobrenome</label>
+  <input type="text" name="lastName" id="last-name-canditate" placeholder="Sobrenome">
+  <br><br>
+  <label for="email">E-mail</label>
+  <input type="text" name="email" id="email" placeholder="Email" value="{{email}}">
+  <br><br>
+  <label for="phone">Telefone</label>
+  <input type="text" name="phone" id="phone" placeholder="Telefone">
+  <br><br>
+  <label for="city">Cidade</label>
+  <input type="text" name="city" id="city" placeholder="Cidade">
+  <br><br>
+  <label for="skills">Skills - Descreva 05 (cinco) Skills</label>
+  <input type="text" name="skills" id="skills" placeholder="Skills">
+  <br><br>
+  <label for="wage">Salário Base</label>
+  <input type="text" name="wage" id="wage" placeholder="Salário Base">
+  <br><br>
+  <label for="input-password">Crie uma senha</label>
+  <input type="password" name="password" id="input-password">
+  <br><br>
+  <button type="submit">Salvar</button>
+
+</form>
+
+
+
