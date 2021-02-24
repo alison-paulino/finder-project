@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
-
+/*
 mongoose
   .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/finderDB?retryWrites=true&w=majority`, {useNewUrlParser: true})
   .then(x => {
@@ -19,16 +19,17 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
+*/
 
-
-require("./configs/db.configs")
+//require("./configs/db.config");
+require("./configs/db.configs");
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
 
-require("./configs/session.configs")(app);
+require("./configs/session.config")(app);
 
 
 // Middleware Setup
@@ -75,6 +76,9 @@ const profileCandidate = require('./routes/candidate.routes');
 app.use('/profile', profileCandidate);
 const create = require('./routes/authCandidate.routes');
 app.use('/', create)
+const login = require('./routes/auth.login.routes');
+app.use('/', login)
+
 
 
 module.exports = app;
