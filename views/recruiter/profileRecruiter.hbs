@@ -40,15 +40,21 @@
 </div> 
 <div>
 <br>
-   <button type="submit" id="edit-profile-recruiter" >
-     <a href="/criarVagas" >Crie suas Vagas</a>
+   <button type="submit" id="create-job" >
+     <a href="/createJob/{{currentUser._id}}" >Crie suas Vagas</a>
    </button>
 </div>
 <div>
+  <form action="/listJobs/{{currentUser._id}}" method="POST"> 
   <h3>Aqui estão suas vagas criadas:</h3>
+  <button> Mostrar vagas</button>
+  </form>
+  {{#each jobsFromDB}}
+  {{this.title}}
+  {{/each}}
 </div>
 <div>
- 
+ </br></br>
 <form action="/logout" method="post" id="logout-form">
   <button type="submit" id="logout"> Logout</button>
 <br>

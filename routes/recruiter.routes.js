@@ -1,6 +1,7 @@
 const express = require('express');
 const routerRecruiter  = express.Router();
 const Recruiter = require('../models/recruiter.model');
+const Job = require('../models/job.model');
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
@@ -28,7 +29,7 @@ routerRecruiter.post('/recruiterPre', (req, res) =>{
  res.render('recruiter/cadastroRecruiter',{name, email });
 })
 routerRecruiter.get('/profileRecruiter', (req, res) =>{
- 
+
   res.render('recruiter/profileRecruiter', {currentUser : req.session.currentUser} )
 })
 
@@ -53,15 +54,7 @@ routerRecruiter.post('/createRecruiter', (req, res, next) =>{
   .genSalt(saltRounds)
   .then(salt => bcryptjs.hash(password, salt))
   .then(hashedPassword => {
-    return Recruiter.create({
-      name,
-      lastName,
-      email,
-      city,
-      phone,
-      company,
-      passwordHash: hashedPassword
-    });
+    return Recruiter.create({name,lastName,email,city,phone,company,passwordHash: hashedPassword});
   })
 
   .then( recruiterFromDB => {
@@ -163,9 +156,51 @@ routerRecruiter.post('/editRecruiter/:id', (req, res, next)=>{
     });
   });
 
-routerRecruiter.get('/criarVaga', (req, res) => {
-  res.render('recruiter/newJob');
+routerRecruiter.get('/createJob/:id', (req, res) => {
+  const { id } = req.params;
+  
+  res.render('recruiter/newJob', {id} );
 })
+// rota para pegar dados do formulario e criar vaga no banco
+
+routerRecruiter.post('/createJob/:id', (req, res, next) =>{
+  const { id } = req.params;
+  const {title,city,skills,company, wage} = req.body;
+  
+  if (!title || !city || !skills || !company || !wage ) {
+    res.render('recruiter/newJob', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+    return;
+  }
+  
+  Job.create({title,city, wage, skills,company, recruiter_id : id})
+
+      .then( jobFromDB => {
+        console.log(`Vaga criada com sucesso ${jobFromDB.title}`)
+        const {currentUser} = req.session;
+        res.render('recruiter/profileRecruiter',{currentUser} );
+    })
+      .catch(error => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          res.status(500).render('recruiter/newJob', { errorMessage: error.message });
+        } else {
+          next(error);
+        }
+  });
+});
+
+routerRecruiter.post('/listJobs/:id', (req, res)=>{
+
+const { id } = req.params;
+  Job.find({recruiter_id : id})
+  .then( jobsFromDB =>{
+    const {currentUser} = req.session;
+    res.render('recruiter/profileRecruiter', {jobsFromDB, currentUser})
+  })
+  .catch( err =>{
+    res.render('recruiter/profileRecruiter', { errorMessage:'Nenhuma vaga a ser exibida, crie novas vagas!'})
+})
+})
+
 
 
 module.exports = routerRecruiter;

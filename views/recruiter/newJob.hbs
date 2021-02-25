@@ -1,10 +1,11 @@
-<h1>Nova Vaga {{name}}</h1>
+<h1>Nova Vaga </h1>
 
 <h2>Preencha os dados abaixo</h2>
 
-<form action="/criarVaga" method="POST">
-  <label for="name">Nome da vaga</label>
-  <input type="text" name="name" id="name-job" placeholder="Nome" ><br>
+<form action="/createJob/{{id}}" method="POST">
+  
+  <label for="title">titulo da vaga</label>
+  <input type="text" name="title" id="name-job" placeholder="Nome" ><br>
   <label for="city">Cidade</label>
   <input type="text" name="city" id="city-job" placeholder="Cidade"><br>
   <label for="skills">Skills - Descreva 05 (cinco) Skills</label>
@@ -12,5 +13,12 @@
   <label for="wage">Salário Base</label>
   <input type="text" name="wage" id="wage-job" placeholder="Salário Base"><br>
   <label for="company">Empresa</label>
-  <input type="text" name="company" id="company" placeholder="Empresa""><br>
+  <input type="text" name="company" id="company-job" placeholder="Empresa"">
+  </br></br>
+  <button type="submit" id="criar-vaga">Criar</button>
+  </form>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
    

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose
-  .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/AuthDB?retryWrites=true&w=majority`, {
+  .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/FinderDB?retryWrites=true&w=majority`, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

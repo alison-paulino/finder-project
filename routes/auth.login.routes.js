@@ -26,41 +26,50 @@ if (email === '' || password === '') {
   }
  
   Recruiter.findOne({ email })
+
     .then(user => {
-     if(user.email === email){
+     console.log("User===> ", user);
       if (!user) {
-        res.render('auth/login', { errorMessage: 'Email não está registrado. Por favor, tente outro email' });
+        console.log("Entrei no usuario null")
+        Candidate.findOne({ email })
+        .then((candidate) => {
+          console.log("Candidate ===>", candidate);
+          if (!candidate) {
+            res.render("auth/login", {
+              errorMessage:
+                "Email não está registrado. Por favor, tente outro email.",
+            });
+            return;
+          } else if (bcryptjs.compareSync(password, candidate.passwordHash)) {
+            
+            //res.render("auth/loginCandidate", { candidate });
+            req.session.currentUser = candidate;
+            res.redirect("/profileCandidate");
+          } else {
+            console.log(bcryptjs.compareSync(password, candidate.passwordHash))
+            res.render("auth/login", { errorMessage: "Password Incorreta." });
+          }
+        })
+        .catch((error) => next(error));
+    
+       
+
+        
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
           req.session.currentUser = user;
         res.redirect('/profileRecruiter');
+        return;
       } else {
        res.render('auth/login', { errorMessage: 'Password incorreto.' });
+       return;
+      
       }
-    }else{
-      // vai para Candidate se não for recruiter
-    }
+    });
+
     })
 
-    Candidate.findOne({ email })
-    .then((candidate) => {
-      if (!candidate) {
-        res.render("auth/login", {
-          errorMessage:
-            "Email não está registrado. Por favor, tente outro email.",
-        });
-        return;
-      } else if (bcryptjs.compareSync(password, candidate.passwordHash)) {
-        //res.render("auth/loginCandidate", { candidate });
-        req.session.currentUser = candidate;
-        res.redirect("/profileCandidate");
-      } else {
-        res.render("auth/login", { errorMessage: "Password Incorreta." });
-      }
-    })
-    .catch((error) => next(error));
-
-});
+    
   
 authRouterLogin.post('/logout', (req, res) => {
   
