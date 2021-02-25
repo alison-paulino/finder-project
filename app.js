@@ -64,18 +64,12 @@ const index = require('./routes/index');
 app.use('/', index);
 const recruiter = require('./routes/recruiter.routes');
 app.use('/', recruiter);
-//const createRecruiter = require('./routes/auth.recruiter.routes');
-//app.use('/', createRecruiter);
-//const loginRecruiter = require('./routes/auth.recruiter.routes');
-//app.use('/login', loginRecruiter);
-//const logoutRecruiter = require('./routes/auth.recruiter.routes');
-//app.use('/logout', logoutRecruiter);
+
 const candidate = require('./routes/candidate.routes');
 app.use('/', candidate);
 const profileCandidate = require('./routes/candidate.routes');
 app.use('/profile', profileCandidate);
-//const create = require('./routes/authCandidate.routes');
-//app.use('/', create)
+
 const login = require('./routes/auth.login.routes');
 app.use('/', login)
 
