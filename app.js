@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 /*
-mongoose 
+mongoose
   .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/finderDB?retryWrites=true&w=majority`, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -21,14 +21,15 @@ mongoose
   });
 */
 
-require("./configs/db.configs")
+//require("./configs/db.config");
+require("./configs/db.configs");
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
 
-require("./configs/session.configs")(app);
+require("./configs/session.config")(app);
 
 
 // Middleware Setup
@@ -56,16 +57,28 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator project Finder';
 
-
+//session config
+ require('./configs/session.config')(app);
 
 const index = require('./routes/index');
 app.use('/', index);
+const recruiter = require('./routes/recruiter.routes');
+app.use('/', recruiter);
+//const createRecruiter = require('./routes/auth.recruiter.routes');
+//app.use('/', createRecruiter);
+//const loginRecruiter = require('./routes/auth.recruiter.routes');
+//app.use('/login', loginRecruiter);
+//const logoutRecruiter = require('./routes/auth.recruiter.routes');
+//app.use('/logout', logoutRecruiter);
 const candidate = require('./routes/candidate.routes');
 app.use('/', candidate);
 const profileCandidate = require('./routes/candidate.routes');
 app.use('/profile', profileCandidate);
-const create = require('./routes/authCandidate.routes');
-app.use('/', create)
+//const create = require('./routes/authCandidate.routes');
+//app.use('/', create)
+const login = require('./routes/auth.login.routes');
+app.use('/', login)
+
 
 
 module.exports = app;

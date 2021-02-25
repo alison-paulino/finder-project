@@ -1,5 +1,5 @@
 const { Schema, model, Mongoose } = require('mongoose');
-const Vacancy = require('../models/vacancy.model');
+const Job = require('../models/job.model');
 
 const candidateSchema = new Schema(
     {
@@ -41,8 +41,8 @@ const candidateSchema = new Schema(
             type: String,
             required: [ true, 'Password é obrigatório.']
         },
-        vacancy_id: {
-            type: Schema.Types.ObjectId, ref: 'Vacancy'
+        job_id: {
+            type: Schema.Types.ObjectId, ref: 'Job'
           }
     },
     {

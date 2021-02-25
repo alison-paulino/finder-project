@@ -1,16 +1,17 @@
-<div id="form">
+
   <h2>Login</h2>
   <form action="/login" method="POST">
-    <label for="input-email">Email</label>
-    <input type="email" id="input-email" name="email" placeholder="Your email" />
- 
+  <div id="form" class="form-group">
+    <label for="email">E-mail</label>
+    <input type="text" id="input-email" name="email" placeholder="Email" class="form-control"/>
+
     <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" />
- 
-    <button type="submit">Login</button>
- 
+    <input type="password" name="password" id="input-password" placeholder="********" class="form-control"/>
+    <br><br>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
+    </div>
   </form>
-</div>

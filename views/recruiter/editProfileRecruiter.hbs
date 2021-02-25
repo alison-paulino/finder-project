@@ -1,0 +1,35 @@
+<h2>{{dadosList.name}} Edite suas informações</h2>
+  <div id="edit-recruiter"></div>
+ <figure>
+  <img src="https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true" alt="Minha Figura">
+ </figure>
+ <div>
+ 
+<form action = "/editRecruiter/{{dadosList._id}}" method = "post">
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{dadosList.name}} ">
+    </br></br>
+    <label for="lastName">Sobrenome</label>
+    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="{{dadosList.lastName}}">
+    </br></br>
+    <label for="city">Cidade</label>
+    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="{{dadosList.city}}">
+    </br></br>
+    <label for="phone">Telefone</label>
+    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="{{dadosList.phone}}">
+    </br></br>
+    <label for="company">Empresa</label>
+    <input type="text" name="company" id="company" placeholder="Empresa onde trabalha" value="{{dadosList.company}}">
+    </br></br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
+    </br></br>
+    <button type="submit" id="update-recruiter">Salvar</button>
+    </form>
+{{{formListRecruiter}}}
+</div>
+</div>
+
+ {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}

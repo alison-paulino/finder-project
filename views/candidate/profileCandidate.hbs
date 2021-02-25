@@ -1,0 +1,53 @@
+
+<h2>Bem vindo {{currentUser.name}} </h2>
+  <div id="edit-recruiter"></div>
+ <figure>
+  <img src="https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true" alt="Minha Figura">
+ </figure>
+ <div>
+  {{#if flag}}
+<form action = "/editRecruiter/{{currentUser._id}}" method = "post">
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{currentUser.name}} ">
+    </br></br>
+    <label for="lastName">Sobrenome</label>
+    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="{{currentUser.lastName}}">
+    </br></br>
+    <label for="city">Cidade</label>
+    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="{{currentUser.city}}">
+    </br></br>
+    <label for="phone">Telefone</label>
+    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="{{currentUser.phone}}">
+   </br></br>
+    <label for="skills">Skills </label>
+    <input type="text" name="skills" id="skills" placeholder="Skills" value="{{currentUser.skills}}">
+    </br></br>
+    <label for="wage">Salário Base</label>
+    <input type="text" name="wage" id="wage" placeholder="Salário Base" value="{{currentUser.wage}}">
+    </br></br>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
+    </br></br>
+    <button type="submit" id="update-recruiter">Salvar</button>
+    </form>
+
+ {{/if}}
+  {{{formListRecruiter}}}
+</div>
+</div>
+<p>agora você ja pode aproveitar todos os beneficios de usar a Finder</p>
+<div>
+  <button type="submit" id="edit-profile-recruiter">
+  <a href="/editCandidate/{{currentUser._id}}" >Edit seus dados</a>
+  <br>
+  </button>
+</div> 
+<br><br> 
+<form action="/logout" method="post" id="logout-form">
+  <button type="submit" id="logout"> Logout</button>
+<br>
+  </form>
+</div> 
+ {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}

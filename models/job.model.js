@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Recruiter = require('../models/recruiter.model');
 
-const vacancySchema = new Schema(
+const jobSchema = new Schema(
   {
     title: {
       type: String,
@@ -35,5 +35,4 @@ const vacancySchema = new Schema(
   }
   );
 
-const Vacancy = mongoose.model('Vacancy', vacancySchema);
-module.exports = Vacancy;
+module.exports = mongoose.model('Job', jobSchema);
