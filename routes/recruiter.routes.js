@@ -171,13 +171,15 @@ routerRecruiter.post('/createJob/:id', (req, res, next) =>{
     res.render('recruiter/newJob', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
     return;
   }
-  
-  Job.create({title,city, wage, skills,company, recruiter_id : id})
+  let newSkills = skills.split(','); 
+
+  Job.create({title,city, wage, skills : newSkills,company, recruiter_id : id})
 
       .then( jobFromDB => {
         console.log(`Vaga criada com sucesso ${jobFromDB.title}`)
         const {currentUser} = req.session;
         res.render('recruiter/profileRecruiter',{currentUser} );
+        
     })
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {

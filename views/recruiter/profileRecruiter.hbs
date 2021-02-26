@@ -49,9 +49,17 @@
   <h3>Aqui estão suas vagas criadas:</h3>
   <button> Mostrar vagas</button>
   </form>
-  {{#each jobsFromDB}}
-  {{this.title}}
-  {{/each}}
+ 
+  {{jobsFromDB.0.skills.[0]}}
+<div>
+ </br></br>
+<form action="/match" method="post" id="match-form">
+  <button type="submit" id="logout"> Match</button>
+<br>
+  </form>
+</div> 
+
+ 
 </div>
 <div>
  </br></br>
