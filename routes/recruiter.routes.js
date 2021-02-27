@@ -29,7 +29,7 @@ routerRecruiter.post('/recruiterPre', (req, res) =>{
  res.render('recruiter/cadastroRecruiter',{name, email });
 })
 routerRecruiter.get('/profileRecruiter', (req, res) =>{
-
+  console.log("console recrutador",{currentUser: req.session.currentUser});
   res.render('recruiter/profileRecruiter', {currentUser : req.session.currentUser} )
 })
 
@@ -85,32 +85,6 @@ routerRecruiter.get('/editRecruiter/:id', (req, res)=>{
   
   Recruiter.findById(id)
   .then(dadosList =>{
-  /*  
-    let formListRecruiter = '';
-    formListRecruiter =` 
-    <form action = "/editRecruiter/${dadosList._id}" method = "post">
-    <label for="name">Nome</label>
-    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="${dadosList.name} ">
-    </br></br>
-    <label for="lastName">Sobrenome</label>
-    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="${dadosList.lastName}">
-    </br></br>
-    <label for="city">Cidade</label>
-    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="${dadosList.city}">
-    </br></br>
-    <label for="phone">Telefone</label>
-    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="${dadosList.phone}">
-    </br></br>
-    <label for="company">Empresa</label>
-    <input type="text" name="company" id="company" placeholder="Empresa onde trabalha" value="${dadosList.company}">
-    </br></br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
-    </br></br>
-    <button type="submit" id="update-recruiter">Salvar</button>
-    </form>`
-    */
-    
     res.render('recruiter/editProfileRecruiter', {dadosList})
   })
 })

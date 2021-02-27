@@ -33,7 +33,8 @@ query instanceof mongoose.Query; // true
      matchedJobs.push({...jobsFromDB[i]._doc,candidates: resultJobs})
     }
     console.log("===> Result Jobs ",matchedJobs);
-     const {currentUser} = req.session;
+    
+    const {currentUser} = req.session;
     res.render('match/matchCandidate', {matchedJobs, currentUser});
   })
   matchRouter.post('/matchJob/:id', async (req, res) =>{
@@ -59,7 +60,8 @@ query instanceof mongoose.Query; // true
     }
     
      const {currentUser} = req.session;
-      res.render('match/matchJob', {resultJobs, currentUser});
+     
+     res.render('match/matchJob', {resultJobs, currentUser});
   })
 
 module.exports = matchRouter;

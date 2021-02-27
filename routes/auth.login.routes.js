@@ -8,9 +8,6 @@ const saltRounds = 10;
 
 
 authRouterLogin.get('/login', (req,res) =>{
-
-
-
   res.render('auth/login');
 })
 
@@ -42,7 +39,7 @@ if (email === '' || password === '') {
             return;
           } else if (bcryptjs.compareSync(password, candidate.passwordHash)) {
             
-            //res.render("auth/loginCandidate", { candidate });
+            
             req.session.currentUser = candidate;
             res.redirect("/profileCandidate");
           } else {
