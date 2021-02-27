@@ -122,6 +122,16 @@ routerCandidate.post("/editCandidate/:id" , (req, res, next) =>{
   const { id } = req.params;
   const { name, lastName, phone, city, skills, wage, password } = req.body;
 
+  if (!lastName || !city || !password || !phone|| !skills|| !name|| !wage ) {
+    res.render('candidate/editProfileCandidate', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+    return;
+  }
+const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res.status(500).render('canditate/editProfileCandidate', { flag: true , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
+    return;
+  }
+
   Candidate.findByIdAndUpdate(id, { name, lastName, phone, city, skills, wage, passwordHash: password }, {new: true})
   .then(candidateFromDB => {
     console.log(candidateFromDB);
