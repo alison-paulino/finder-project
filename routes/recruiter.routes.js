@@ -85,11 +85,8 @@ routerRecruiter.get('/editRecruiter/:id', (req, res)=>{
   
   Recruiter.findById(id)
   .then(dadosList =>{
-<<<<<<< HEAD
-  res.render('recruiter/editProfileRecruiter', {dadosList})
-=======
-    res.render('recruiter/editProfileRecruiter', {dadosList})
->>>>>>> c60793df0563129cdd36ef2cee59501603dc1edf
+    res.render("recruiter/editProfileRecruiter", {dadosList})
+    
   })
 })
 
