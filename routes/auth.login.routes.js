@@ -28,12 +28,12 @@ if (email === '' || password === '') {
   Recruiter.findOne({ email })
 
     .then(user => {
-     console.log("User===> ", user);
+     
       if (!user) {
-        console.log("Entrei no usuario null")
+        
         Candidate.findOne({ email })
         .then((candidate) => {
-          console.log("Candidate ===>", candidate);
+         
           if (!candidate) {
             res.render("auth/login", {
               errorMessage:

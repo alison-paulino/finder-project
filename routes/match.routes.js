@@ -40,13 +40,26 @@ query instanceof mongoose.Query; // true
     const {id} = req.params;
     let candidateFromDB;
     let resultJobs;
-    candidateFromDB = await Candidate.find({id})
-    console.log('===> Candidato ',candidateFromDB);
-    resultJobs = await Job.find(candidateFromDB.skills)
+    try {
+      candidateFromDB = await Candidate.findById(id)
+      console.log('===> Candidato ',candidateFromDB);
+    } catch (error) {
+      console.log(error)
+    }
+    
+    try {
+    let query ={ $or : []};
+    for(let i = 0; i < candidateFromDB.skills.length; i +=1){
+      query.$or.push({skills:{$all:[candidateFromDB.skills[i]]}});
+    }  
+    resultJobs = await Job.find(query).populate('recruiter_id');
     console.log('===> Vagas ',resultJobs);
+    } catch (error) {
+      console.log('resultJobs erro:',error);
+    }
     
      const {currentUser} = req.session;
-    res.render('match/matchJob', {resultJobs, currentUser});
+      res.render('match/matchJob', {resultJobs, currentUser});
   })
 
 module.exports = matchRouter;
