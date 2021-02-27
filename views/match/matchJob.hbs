@@ -1,0 +1,12 @@
+<h1>{{currentUser.name}}</h1>
+
+<p>Aqui estão todas as vagas correspondentes a suas skills:</p>
+
+
+{{#each resultJobs }}
+<p>Nome da Vaga:{{this.title}}</p>
+<p>Cidade:{{this.city}}</p>
+<p>Empresa:{{this.company}}</p>
+<p>Skills:{{this.skills}}</p>
+{{/each}}
+{{/each}}
