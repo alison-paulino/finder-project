@@ -1,0 +1,16 @@
+
+<button type="submit" id="button-back-profileRecruiter">
+<a href="/profileRecruiter" >Voltar</a></button>
+<h1>{{currentUser.name}}</h1>
+
+<p>Aqui estão todos os candidatos para suas vaga:</p>
+
+
+{{#each matchedJobs }}
+<p>Vaga:{{this.title}}</p>
+{{#each this.candidates}}
+<p>Name:{{this.name}}</p>
+<p>E-mail:{{this.email}}</p>
+<p>Skills:{{this.skills}}</p>
+{{/each}}
+{{/each}}

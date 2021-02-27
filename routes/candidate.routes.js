@@ -34,6 +34,7 @@ routerCandidate.post("/candidatePre", (req, res) => {
 });
 
 routerCandidate.get("/profileCandidate", (req, res) => {
+  console.log("console candidate",{currentUser: req.session.currentUser});
   res.render("candidate/profileCandidate", {currentUser: req.session.currentUser});
 });
 
@@ -82,8 +83,8 @@ if (!regex.test(password)) {
 
 const salt = bcrypt.genSaltSync(saltRound);
 const hashedPassword = bcrypt.hashSync(password, salt);
-
-Candidate.create ({ name, lastName, email, phone, city, skills, wage, passwordHash: hashedPassword })
+ newSkills = skills.split(',');
+Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage, passwordHash: hashedPassword })
   .then(candidateFromDB => {
     console.log(candidateFromDB);
     req.session.currentUser = candidateFromDB;
