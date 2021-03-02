@@ -1,21 +1,73 @@
 body {
+ 
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-#container{
 
+#container{
   display:flex;
-  justify-content: space-around;
-}
+  justify-content: space-between;
+  margin-top: 3%;
+  }
+
 img {
   width: 200px;
   height: 200px;
 }
+
 #edit-recruiter {
   display:flex;
   justify-content: space-around;
+}
+
+.logo {
+  height: auto;
+  width: 250px;
+}
+
+#slogan{
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #707070;
+  margin-right: 5%;
+}
+
+.navbar-nav {
+  font-size: 1.5vw;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: white;
+}
+
+.btn-outline-secondary {
+  margin-left: 150%;
+  text-decoration: none;
+  border-color: #707070;
+  color: white
+}
+//Estilização Candidatos
+#back-div-candidato{
+  background-color: #87023E;
+  height: 5vw;
+  width: 48vw;
+  margin-left: -5%;
+  text-align: end;
+  color: white;
+  padding-right: 1%;
+}
+
+
+
+//Estilização Recrutador
+#back-div-recrutador{
+  background-color: #111193;
+  height: 5vw;
+  width: 48vw;
+  margin-left: 5%;
+  text-align: start;
+  color: white;
+  padding-left: 1%;
 }
