@@ -5,11 +5,12 @@
 
 <p>Aqui estão todos os candidatos para suas vaga:</p>
 
-
 {{#each matchedJobs }}
-<p>Vaga:{{this.title}}</p>
+<p>Vaga:{{this.title}}"></a></p>
 {{#each this.candidates}}
+<a href="candidateDetails/{{this._id}}">
 <p>Name:{{this.name}}</p>
+</a>
 <p>E-mail:{{this.email}}</p>
 <p>Skills:{{this.skills}}</p>
 {{/each}}

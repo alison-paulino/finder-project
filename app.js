@@ -66,12 +66,11 @@ const recruiter = require('./routes/recruiter.routes');
 app.use('/', recruiter);
 const candidate = require('./routes/candidate.routes');
 app.use('/', candidate);
-const profileCandidate = require('./routes/candidate.routes');
-app.use('/profile', profileCandidate);
 const login = require('./routes/auth.login.routes');
 app.use('/', login)
 const match = require('./routes/match.routes');
 app.use('/', match)
+
 
 
 
