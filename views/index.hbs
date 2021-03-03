@@ -1,30 +1,33 @@
-<h1>Finder</h1>
-<p>Dê um match no seu talento</p>
-
- <a href="/login" > Login</a>
 <div id="container">
-    <div id="candidato">
+  <div id="candidato">
+    <div id="back-div-candidato">
       <h2>Candidatos</h2>
-    <p>Cadastre perfil e encontre a vaga desejada!</p>
-    <button  id="btn-cad-candidato">
-     
-      <a href="/candidatePre" > Cadastre-se</a>
-      </button>
-      <div>
-      {{{formCandidate}}}
-      </div>
-
     </div>
-    <div id="recrutador">
-    <h2>Recrutadores</h2>
-    <p>Cadastre suas vagas e consiga candidatos com o perfil adequado</p>
-    <button  id="btn-cad-recrutador">
-     
-      <a href="/recruiterPre" > Cadastre-se</a>
-      </button>
-      <div>
-      {{{formRecruiter}}}
+    <div id="imagem-candidato">
+      <img src="../images/handsome-young-man.png" alt="Cadastre o seu perfil e encontre a vaga perfeitapara você">
+    </div>  
+      <div id="btn-cad-candidato">
+      <a href="/candidatePre"><img src="../images/botao-candidato.png" alt=""></a>
       </div>
+ 
+        <div id="form-pre-candidato">
+        {{{formCandidate}}}
+        </div>
+  </div>  
+
+  <div id="recrutador">
+      <div id="back-div-recrutador">
+    <h2>Recrutadores</h2>
+        </div>
+        <div id="imagem-recrutador">
+        <img src="../images/smiling-female-business.png" alt="Cadastre suas vagas e encontre candidatos com o perfil mais adequado">
+        </div>
+          <div id="btn-cad-recrutador">
+            <a href="/recruiterPre"><img src="../images/botao-recrutador.png" alt=""></a>
+          </div>
+            <div id="form-pre-recrutador">
+              {{{formRecruiter}}}
+            </div>
     
     </div>
 </div>

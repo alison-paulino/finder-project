@@ -10,13 +10,13 @@ const saltRounds = 10;
 routerRecruiter.get('/recruiterPre', (req, res)=>{
     let formRecruiter = '';
     formRecruiter =`
-    <form action="/recruiterPre" method="POST">
-     <label for="name">Nome</label>
-     <input type="text" name="name" id="name-recruiter" placeholder="Nome">
-     <br><br>
-     <label for="email">Email</label>
-     <input type="email" name="email" id="email" placeholder="E-mail">
-     <button type="submit">Criar</button>
+    <form action="/recruiterPre" method="POST" class="form-group">
+     <label for="name"></label>
+     <input type="text" name="name" id="name-recruiter" placeholder="Nome" class="form-control">
+     <label for="email"></label>
+     <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+     <br>
+     <button type="submit" class="btn btn-primary">Criar</button>
     </form>
     `
 res.render('index', {formRecruiter}) 

@@ -11,17 +11,16 @@ routerCandidate.get("/candidatePre", (req, res) => {
 
   formCandidate = `
 
-  <form action="/candidatePre" method="POST">
-  <label for="name-candidate" >Nome</form>
-  <input type="text" name ="name" id="name-candidate" placeholder= "Nome">
-  <br><br>
-  <label form="email">E-mail/form>
-  <input type="email" name="email" id="email-candidate" placeholder= "E-mail">
-  <br><br>
-  <button type="submit">Criar</button>
-  </form>
+  <form action="/candidatePre" method="POST" class="form-group">
+  <label for="name"></label>
+  <input type="text" name="name" id="name-candidato" placeholder="Nome" class="form-control">
+  <label for="email"></label>
+  <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+  <br>
+  <button type="submit" class="btn btn-primary">Criar</button>
+ </form>
+ `;
 
-  `;
   res.render("index", { formCandidate });
 });
 
