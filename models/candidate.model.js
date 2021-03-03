@@ -23,7 +23,8 @@ const candidateSchema = new Schema(
         },
         skills: {
             type: [String],
-            required: [true, 'Obrigatório o preenchimento de, pelo menos, 5 skills']
+            required: [true, 'Obrigatório o preenchimento de, pelo menos, 5 skills'],
+            lowercase: true
         },
         wage: {
             type: Number,

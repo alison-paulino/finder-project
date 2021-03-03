@@ -15,7 +15,7 @@ routerCandidate.get("/candidatePre", (req, res) => {
   <label for="name-candidate" >Nome</form>
   <input type="text" name ="name" id="name-candidate" placeholder= "Nome">
   <br><br>
-  <label form="email">Nome</form>
+  <label form="email">E-mail/form>
   <input type="email" name="email" id="email-candidate" placeholder= "E-mail">
   <br><br>
   <button type="submit">Criar</button>
@@ -83,7 +83,9 @@ if (!regex.test(password)) {
 
 const salt = bcrypt.genSaltSync(saltRound);
 const hashedPassword = bcrypt.hashSync(password, salt);
+ skills.trim();
  newSkills = skills.split(',');
+ 
  console.log(newSkills);
 Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage, passwordHash: hashedPassword })
   .then(candidateFromDB => {
