@@ -82,7 +82,10 @@ if (!regex.test(password)) {
 
 const salt = bcrypt.genSaltSync(saltRound);
 const hashedPassword = bcrypt.hashSync(password, salt);
+ skills.trim();
  newSkills = skills.split(',');
+ 
+ console.log(newSkills);
 Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage, passwordHash: hashedPassword })
   .then(candidateFromDB => {
     console.log(candidateFromDB);

@@ -3,7 +3,9 @@
 <h1>{{currentUser.name}},</h1>
 <p>Aqui estão todas as vagas correspondentes as suas skills:</p>
 {{#each resultJobs }}
-<p>Nome da Vaga:{{this.title}}</p>
+<a href="jobDetails/{{this._id}}">
+<p>Nome da Vaga:{{this.title}}></p>
+</a>
 <p>Cidade:{{this.city}}</p>
 <p>Empresa:{{this.company}}</p>
 <p>Skills:{{this.skills}}</p>

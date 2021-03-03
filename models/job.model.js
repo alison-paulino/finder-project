@@ -12,7 +12,8 @@ const jobSchema = new Schema(
     },
     skills: {
       type: [String],
-      required: [true, 'Obrigatório o preenchimento de, pelo menos, 5 skills']
+      required: [true, 'Obrigatório o preenchimento de, pelo menos, 5 skills'],
+      lowercase: true
    },
    city: {
     type: String,
