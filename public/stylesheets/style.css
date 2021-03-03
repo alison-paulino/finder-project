@@ -7,10 +7,6 @@ body {
   justify-content: space-between;
   margin-top: 3%; }
 
-img {
-  width: 200px;
-  height: 200px; }
-
 #edit-recruiter {
   display: flex;
   justify-content: space-around; }
@@ -47,6 +43,28 @@ img {
   color: white;
   padding-right: 1%; }
 
+#back-div-candidato > h2 {
+  padding-top: 0.5ch;
+  font-size: 2.5vw; }
+
+#imagem-candidato > img {
+  height: auto;
+  width: 48vw;
+  margin-left: -5%; }
+
+#btn-cad-candidato {
+  margin-top: -22%;
+  margin-left: 75%; }
+
+#btn-cad-candidato > a > img {
+  width: auto;
+  height: 6vw; }
+
+#form-pre-candidato {
+  margin-top: 10%;
+  margin-left: -5%;
+  padding-right: 2.5vw; }
+
 #back-div-recrutador {
   background-color: #111193;
   height: 5vw;
@@ -55,5 +73,27 @@ img {
   text-align: start;
   color: white;
   padding-left: 1%; }
+
+#back-div-recrutador > h2 {
+  padding-top: 0.5ch;
+  font-size: 2.5vw; }
+
+#imagem-recrutador > img {
+  height: auto;
+  width: 48vw;
+  margin-left: 5%; }
+
+#btn-cad-recrutador {
+  margin-top: -22%;
+  margin-left: 10.5%; }
+
+#btn-cad-recrutador > a > img {
+  width: auto;
+  height: 6vw; }
+
+#form-pre-recrutador {
+  margin-top: 10%;
+  margin-left: 5%;
+  padding-right: 2.5vw; }
 
 /*# sourceMappingURL=style.css.map */
