@@ -1,25 +1,35 @@
 <div id="topo-candidato">
   </div>
-<div id="textos-match-vaga">
+
+<div id="textos-match-vaga-candidato">
 <h2>Olá, {{currentUser.name}}!</h2>
 <h3>Aqui estão todas as vagas correspondentes às suas skills:</h3>
 </div>
 
-{{#each resultJobs }}
+<div id="cards-candidato">
+  {{#each resultJobs }}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <figure>
+        <img src="/images/img-cards.png" class="card-img-top" alt="...">
+        <figcaption id="figure-caption-jobs">Vaga: {{this.title}}</figcaption>
+        </figure>
+      </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cidade: {{this.city}}</li>
+          <li class="list-group-item">Empresa: {{this.company}}</li>
+          <li class="list-group-item">Skills: {{this.skills}}</li>
+          <li class="list-group-item">Salário: {{this.wage}}</li>
+          <li class="list-group-item">Recrutador: {{this.recruiter_id.name}} {{this.recruiter_id.lastName}}</li>
+          <li class="list-group-item">Email do Recrutador: {{this.recruiter_id.email}}</li>
+          <li class="list-group-item">Entre em contato com o Recrutador através do e-mail.</li>
+        </ul>
+    </div>
+          {{/each}}
+</div>
 
 
-<a href="jobDetails/{{this._id}}">
-<p>Nome da Vaga: {{this.title}}></p>
-</a>
-<p>Cidade: {{this.city}}</p>
-<p>Empresa: {{this.company}}</p>
-<p>Skills: {{this.skills}}</p>
-<p>Salario: {{this.wage}}</p>
-<p>Recrutador: {{this.recruiter_id.name}} {{this.recruiter_id.lastName}}</p>
-<p>Email do Recrutador: {{this.recruiter_id.email}}</p>
-{{/each}}
-<p>Entre em contato com o Recrutador através do e-mail.</p>
-
-
-<button type="submit" id="button-back-profileCandidate">
+<button type="submit" class="btn btn-primary" id="button-back-profileCandidate">
 <a href="/profileCandidate" >Voltar</a></button>
+
+      
