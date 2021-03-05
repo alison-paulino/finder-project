@@ -5,13 +5,15 @@
 <h2>Olá, {{currentUser.name}}</h2>
 <h3>Aqui estão todos os candidatos com as skills específicas para as suas vagas:</h3>
 </div>
-  <div id="cards-recrutador">
+<div id="cards-recrutador">
       {{#each matchedJobs }}
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Vaga: {{this.title}}</h5>
+        <figure>
+        <img src="/images/img-cards.png" class="card-img-top" alt="...">
+        <figcaption id="figure-caption">Vaga: {{this.title}}</figcaption>
+        </figure>
       </div>
-          <img src="" class="card-img-top" alt="...">
           {{#each this.candidates}}
         <ul class="list-group list-group-flush">
           <a href="candidateDetails/{{this._id}}">
@@ -25,7 +27,7 @@
   </div>
 
 <div>
-<button type="submit" class="btn btn-primary" id="button-back-profileRecruiter">
+<button type="submit" id="button-back-profileRecruiter" class="btn btn-primary" >
 <a href="/profileRecruiter" >Voltar</a></button>
 </div>
 

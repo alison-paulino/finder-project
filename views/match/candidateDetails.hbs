@@ -1,18 +1,21 @@
 <div id="topo-candidato">
   </div>
 
-<div id="textos-match-vaga">
-<h1>Detalhes do Candidato</h1>
+
+<div id="textos-match-vaga-candidato">
+<h2>Detalhes do Candidato!</h2>
 </div>
 
-<p>Nome:{{candidateFromDB.name}}</p>
-<p>Sobrenome:{{candidateFromDB.name}}</p>
-<p>Cidade:{{candidateFromDB.city}}</p>
-<p>Salario pretendido:{{candidateFromDB.wage}}</p>
-<p>Skilss:{{candidateFromDB.skills}}</p>
-<h2>Entre em contato com o candidato:</h2>
+<div id="ficha-candidato">
+<h3>Nome:{{candidateFromDB.name}}</h3>
+<h3>Sobrenome:{{candidateFromDB.name}}</h3>
+<h5>Cidade:{{candidateFromDB.city}}</h5>
+<h5>Salario pretendido:{{candidateFromDB.wage}}</h5>
+<h5>Skilss:{{candidateFromDB.skills}}</h5>
+<h4>Entre em contato com o candidato:</h4>
 <p>E-mail:{{candidateFromDB.email}}</p>
 <p>Telefone:{{candidateFromDB.phone}}</p>
 <form action="/matchCandidate/{{currentUser._id}}" method="POST"> 
 <button type="submit" class="btn btn-primary">Voltar</button>
 </form>
+</div>
