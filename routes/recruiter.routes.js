@@ -2,6 +2,7 @@ const express = require('express');
 const routerRecruiter  = express.Router();
 const Recruiter = require('../models/recruiter.model');
 const Job = require('../models/job.model');
+const fileUploader = require('../configs/cloudinary.config');
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
@@ -29,24 +30,26 @@ routerRecruiter.post('/recruiterPre', (req, res) =>{
  res.render('recruiter/cadastroRecruiter',{name, email });
 })
 routerRecruiter.get('/profileRecruiter', (req, res) =>{
-  console.log("console recrutador",{currentUser: req.session.currentUser});
+  if(!req.session.currentUser){
+    res.redirect('/');
+    return;
+  }
   res.render('recruiter/profileRecruiter', {currentUser : req.session.currentUser} )
 })
 
 // rota post para receber cadastro e criar recrutador no banco
-routerRecruiter.post('/createRecruiter', (req, res, next) =>{
+routerRecruiter.post('/createRecruiter', fileUploader.single('image'),(req, res, next) =>{
   const {name,lastName,email,city,phone,company,password} = req.body;
   console.log('SESSION =====> ', req.session);
-  
-  
+  const {currentUser} = req.session;
   
   if (!lastName || !city || !password || !phone|| !company ) {
-    res.render('recruiter/cadastroRecruiter', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+    res.render('recruiter/cadastroRecruiter', { currentUser ,errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
     return;
   }
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
-    res.status(500).render('recruiter/cadastroRecruiter', { errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
+    res.status(500).render('recruiter/cadastroRecruiter', { currentUser , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
     return;
   }
   
@@ -54,7 +57,7 @@ routerRecruiter.post('/createRecruiter', (req, res, next) =>{
   .genSalt(saltRounds)
   .then(salt => bcryptjs.hash(password, salt))
   .then(hashedPassword => {
-    return Recruiter.create({name,lastName,email,city,phone,company,passwordHash: hashedPassword});
+    return Recruiter.create({name,lastName,email,city,phone,company,passwordHash: hashedPassword, imageUrl: req.file.path});
   })
 
   .then( recruiterFromDB => {
@@ -65,9 +68,9 @@ routerRecruiter.post('/createRecruiter', (req, res, next) =>{
   })
   .catch(error => {
     if (error instanceof mongoose.Error.ValidationError) {
-      res.status(500).render('recruiter/cadastroRecruiter', { errorMessage: error.message });
+      res.status(500).render('recruiter/cadastroRecruiter', { currentUser, errorMessage: error.message });
     } else if (error.code === 11000) {
-      res.status(500).render('recruiter/cadastroRecruiter', {
+      res.status(500).render('recruiter/cadastroRecruiter', {currentUser,
          errorMessage: 'E-mail precisa ser unico. Esse e-mail já está cadastrado.'
       });
     } else {
@@ -85,23 +88,34 @@ routerRecruiter.get('/editRecruiter/:id', (req, res)=>{
   
   Recruiter.findById(id)
   .then(dadosList =>{
+    if(!req.session.currentUser){
+      res.redirect('/');
+      return;
+    }
     res.render("recruiter/editProfileRecruiter", {dadosList})
     
   })
 })
 
 // rota post pegar dados do formulario editado e alterar no banco
-routerRecruiter.post('/editRecruiter/:id', (req, res, next)=>{
+routerRecruiter.post('/editRecruiter/:id', fileUploader.single('image'),(req, res, next)=>{
     const {id} = req.params;
     const {name, lastName,city, phone, company, password} = req.body;
+    let imageUrl;
+    const {currentUser} = req.session;
+      if (req.file) {
+        imageUrl = req.file.path;
+      } else {
+        imageUrl = req.body.existingImage;
+      }
 
       if (!lastName || !city || !password || !phone|| !company| !name ) {
-        res.render('recruiter/editProfileRecruiter', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+        res.render('recruiter/editProfileRecruiter', { currentUser, errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
         return;
       }
         const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
       if (!regex.test(password)) {
-        res.status(500).render('recruiter/editProfileRecruiter', { flag: true , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
+        res.status(500).render('recruiter/editProfileRecruiter', { currentUser , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
         return;
       }
      const salt = bcryptjs.genSaltSync(saltRounds);
@@ -112,18 +126,19 @@ routerRecruiter.post('/editRecruiter/:id', (req, res, next)=>{
         city,
         phone,
         company,
-        passwordHash : hash1
+        passwordHash : hash1,
+        imageUrl
     }, {new : true})
      .then(userFromDB => {
-     req.session.currentUser = userFromDB;
+     
       res.redirect('/profileRecruiter')
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render('recruiter/editProfileRecruiter', { errorMessage: error.message });
+        res.status(500).render('recruiter/editProfileRecruiter', { currentUser, errorMessage: error.message });
       } else if (error.code === 11000) {
         res.status(500).render('recruiter/editProfileRecruiter', {
-           errorMessage: 'E-mail precisa ser unico. Esse e-mail já está cadastrado.'
+          currentUser, errorMessage: 'E-mail precisa ser unico. Esse e-mail já está cadastrado.'
         });
       } else {
         next(error);
@@ -141,9 +156,10 @@ routerRecruiter.get('/createJob/:id', (req, res) => {
 routerRecruiter.post('/createJob/:id', (req, res, next) =>{
   const { id } = req.params;
   const {title,city,skills,company, wage} = req.body;
+  const {currentUser} = req.session;
   
   if (!title || !city || !skills || !company || !wage ) {
-    res.render('recruiter/newJob', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+    res.render('recruiter/newJob', { currentUser, errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
     return;
   }
   let newSkills = skills.split(','); 
@@ -152,13 +168,13 @@ routerRecruiter.post('/createJob/:id', (req, res, next) =>{
 
       .then( jobFromDB => {
         console.log(`Vaga criada com sucesso ${jobFromDB.title}`)
-        const {currentUser} = req.session;
+        
         res.render('recruiter/profileRecruiter',{currentUser} );
         
     })
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
-          res.status(500).render('recruiter/newJob', { errorMessage: error.message });
+          res.status(500).render('recruiter/newJob', {currentUser, errorMessage: error.message });
         } else {
           next(error);
         }
@@ -174,7 +190,7 @@ const { id } = req.params;
     res.render('recruiter/profileRecruiter', {jobsFromDB, currentUser})
   })
   .catch( err =>{
-    res.render('recruiter/profileRecruiter', { errorMessage:'Nenhuma vaga a ser exibida, crie novas vagas!'})
+    res.render('recruiter/profileRecruiter', {  currentUser, errorMessage:'Nenhuma vaga a ser exibida, crie novas vagas!'})
 })
 })
 

@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
-
+const app = express();
 authRouterLogin.get('/login', (req,res) =>{
   res.render('auth/login');
 })
@@ -38,8 +38,7 @@ if (email === '' || password === '') {
             });
             return;
           } else if (bcryptjs.compareSync(password, candidate.passwordHash)) {
-            
-            
+            app.locals.userLogado = "userLogado"; 
             req.session.currentUser = candidate;
             res.redirect("/profileCandidate");
           } else {
@@ -48,13 +47,10 @@ if (email === '' || password === '') {
           }
         })
         .catch((error) => next(error));
-    
-       
-
-        
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-          req.session.currentUser = user;
+        app.locals.userLogado = "userLogado"; 
+        req.session.currentUser = user;
         res.redirect('/profileRecruiter');
         return;
       } else {
@@ -65,10 +61,7 @@ if (email === '' || password === '') {
     });
 
     })
-
-    
-  
-authRouterLogin.post('/logout', (req, res) => {
+authRouterLogin.get('/logout', (req, res) => {
   
     req.session.destroy();
     res.redirect('/');
