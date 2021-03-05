@@ -9,19 +9,6 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-
-/*
-mongoose
-  .connect(`mongodb+srv://${process.env.UserBD}@cluster0.rvgoa.mongodb.net/finderDB?retryWrites=true&w=majority`, {useNewUrlParser: true})
-  .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch(err => {
-    console.error('Error connecting to mongo', err)
-  });
-*/
-
-//require("./configs/db.config");
 require("./configs/db.configs");
 
 const app_name = require('./package.json').name;
@@ -30,7 +17,6 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 require("./configs/session.config")(app);
-
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -45,17 +31,14 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-
+app.use(favicon(path.join(__dirname, 'public/images/favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator project Finder';
+app.locals.title = 'Finder';
 
 //session config
  require('./configs/session.config')(app);

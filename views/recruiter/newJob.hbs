@@ -3,19 +3,20 @@
 <h2>Preencha os dados abaixo:</h2>
 
 <form action="/createJob/{{id}}" method="POST">
-  
+  <div id="new-job-recrutador" class="form-group">
   <label for="title">Título da vaga</label>
-  <input type="text" name="title" id="name-job" placeholder="Nome" ><br>
+  <input type="text" name="title" id="name-job" placeholder="Nome" class="form-control">
   <label for="city">Cidade</label>
-  <input type="text" name="city" id="city-job" placeholder="Cidade"><br>
+  <input type="text" name="city" id="city-job" placeholder="Cidade" class="form-control">
   <label for="skills">Skills - Descreva 05 (cinco) Skills</label>
-  <input type="text" name="skills" id="skills-job" placeholder="Skills"><br>
+  <input type="text" name="skills" id="skills-job" placeholder="Skills" class="form-control">
   <label for="wage">Salário Base</label>
-  <input type="text" name="wage" id="wage-job" placeholder="Salário Base"><br>
+  <input type="text" name="wage" id="wage-job" placeholder="Salário Base" class="form-control">
   <label for="company">Empresa</label>
-  <input type="text" name="company" id="company-job" placeholder="Empresa"">
-  </br></br>
-  <button type="submit" id="criar-vaga">Criar</button>
+  <input type="text" name="company" id="company-job" placeholder="Empresa" class="form-control">
+  </br>
+  <button type="submit" id="criar-vaga" class="btn btn-primary">Criar</button>
+  <div>
   </form>
 
   {{#if errorMessage}}

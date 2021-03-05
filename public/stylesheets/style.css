@@ -2,6 +2,14 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+h2 {
+  padding-top: 0.5ch;
+  font-size: 2.5vw; }
+
+h3 {
+  padding-top: 0.5ch;
+  font-size: 1.5vw; }
+
 #container {
   display: flex;
   justify-content: space-between;
@@ -65,6 +73,24 @@ body {
   margin-left: -5%;
   padding-right: 2.5vw; }
 
+#button-back-profileCandidate > a {
+  text-decoration: none;
+  color: white; }
+
+#form-edit-candidate {
+  padding-right: 40vw; }
+
+#back-profile-candidate > a {
+  text-decoration: none;
+  color: white; }
+
+#cad-candidate {
+  padding-right: 40vw; }
+
+#button-back-profile-candidate > a {
+  text-decoration: none;
+  color: white; }
+
 #back-div-recrutador {
   background-color: #111193;
   height: 5vw;
@@ -96,6 +122,7 @@ body {
   margin-left: 5%;
   padding-right: 2.5vw; }
 
+<<<<<<< HEAD
 #ficha-candidato {
   margin-top: 3%;
   color: #707070; }
@@ -105,6 +132,43 @@ body {
   font-weight: bold;
   color: #707070;
   text-decoration: underline blue; }
+=======
+figure > img {
+  width: 200px;
+  height: 200px; }
+
+#button-create-job > a {
+  text-decoration: none;
+  color: white; }
+
+#button-edit-profile-recruiter > a {
+  text-decoration: none;
+  color: white; }
+
+#button-back-profile-recruiter > a {
+  text-decoration: none;
+  color: white; }
+
+#button-back-profileRecruiter > a {
+  text-decoration: none;
+  color: white; }
+
+#form-edit-recruiter {
+  padding-right: 40vw; }
+
+#new-job-recrutador {
+  padding-right: 40vw; }
+
+#cad-recruiter {
+  padding-right: 40vw; }
+
+#button-back-profileRecruiter > a {
+  text-decoration: none;
+  color: white; }
+
+#form-login {
+  padding-right: 40vw; }
+>>>>>>> 65ebebccdf33bd7813fccf23cfd08f48ae933744
 
 #topo-candidato {
   background-color: #87023E;

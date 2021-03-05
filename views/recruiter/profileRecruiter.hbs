@@ -1,61 +1,38 @@
 <h2>Bem-vindo, {{currentUser.name}} </h2>
   <div id="edit-recruiter"></div>
  <figure>
-  <img src="https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true" alt="Minha Figura">
+  <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
  </figure>
  <div>
-  {{#if flag}}
-<form action = "/editRecruiter/{{currentUser._id}}" method = "post">
-    <label for="name">Nome</label>
-    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{currentUser.name}} ">
-    </br></br>
-    <label for="lastName">Sobrenome</label>
-    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="{{currentUser.lastName}}">
-    </br></br>
-    <label for="city">Cidade</label>
-    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="{{currentUser.city}}">
-    </br></br>
-    <label for="phone">Telefone</label>
-    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="{{currentUser.phone}}">
-    </br></br>
-    <label for="company">Empresa</label>
-    <input type="text" name="company" id="company" placeholder="Empresa onde trabalha" value="{{currentUser.company}}">
-    </br></br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
-    </br></br>
-    <button type="submit" id="update-recruiter">Salvar</button>
-    </form>
-
- {{/if}}
-  {{{formListRecruiter}}}
+ {{{formListRecruiter}}}
 </div>
 </div>
 <p>Agora você pode aproveitar todos os benefícios de usar o Finder</p>
 <div>
-  <button type="submit" id="edit-profile-recruiter">
+  <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
   <a href="/editRecruiter/{{currentUser._id}}" >Edit seus dados</a>
   <br>
   </button>
 </div> 
 <div>
 <br>
-   <button type="submit" id="create-job" >
+   <button type="submit" id="button-create-job" class="btn btn-primary">
      <a href="/createJob/{{currentUser._id}}" >Crie suas Vagas</a>
    </button>
 </div>
 <div>
   <form action="/listJobs/{{currentUser._id}}" method="POST"> 
   <h3>Aqui estão suas vagas criadas:</h3>
-  <button>Mostrar vagas</button>
+  <button class="btn btn-primary">Mostrar vagas</button>
   </form>
- 
-  {{jobsFromDB.0.skills.[0]}}
+ {{#each jobsFromDB}}
+  {{this.title}}<br>
+ {{/each}}
 <div>
- </br></br>
+
  <h3>Dê um match e encontre os candidados para as vagas:</h3>
-<form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs">
-  <button type="submit" id="button-match-recruiter"> Match</button>
+<form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs" >
+  <button type="submit" id="button-match-recruiter" class="btn btn-primary"> Match</button>
 <br>
   </form>
 </div> 
@@ -64,10 +41,6 @@
 </div>
 <div>
  </br></br>
-<form action="/logout" method="post" id="logout-form">
-  <button type="submit" id="logout"> Logout</button>
-<br>
-  </form>
 </div> 
  {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>

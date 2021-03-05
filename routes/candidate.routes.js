@@ -1,5 +1,6 @@
 const express = require("express");
 const Candidate = require("../models/candidate.model");
+const fileUploader = require('../configs/cloudinary.config');
 const routerCandidate = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
@@ -33,16 +34,20 @@ routerCandidate.post("/candidatePre", (req, res) => {
 });
 
 routerCandidate.get("/profileCandidate", (req, res) => {
+  if(!req.session.currentUser){
+    res.redirect('/');
+    return;
+  }
   console.log("console candidate",{currentUser: req.session.currentUser});
   res.render("candidate/profileCandidate", {currentUser: req.session.currentUser});
 });
 
 // rota get renderizar formulario cadastro candidate
 routerCandidate.get("/createCandidate", (req, res, next) =>
-  res.render("candidate/cadastroCandidate")
+  res.render("candidate/cadastroCandidate", {currentUser: req.session.currentUser})
 );
 // rota post pegar dados formulario e criar candidato no banco
-routerCandidate.post("/createCandidate", (req, res, next) => {
+routerCandidate.post("/createCandidate",fileUploader.single('image'), (req, res, next) => {
    const {
     name,
     lastName,
@@ -82,11 +87,9 @@ if (!regex.test(password)) {
 
 const salt = bcrypt.genSaltSync(saltRound);
 const hashedPassword = bcrypt.hashSync(password, salt);
- skills.trim();
  newSkills = skills.split(',');
- 
  console.log(newSkills);
-Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage, passwordHash: hashedPassword })
+Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage, passwordHash: hashedPassword, imageUrl: req.file.path })
   .then(candidateFromDB => {
     console.log(candidateFromDB);
     req.session.currentUser = candidateFromDB;
@@ -114,15 +117,26 @@ routerCandidate.get("/editCandidate/:id", (req, res) => {
 
   Candidate.findById(id)
     .then((candidateFromDB) => {
+      if(!req.session.currentUser){
+        res.redirect('/');
+        return;
+      }
       
       res.render("./candidate/editProfileCandidate", {candidateFromDB})
     })
     .catch(error => console.log('Erro do edit', error));
 });
 // rota post pegar dados do formulario editado e alterar no banco
-routerCandidate.post("/editCandidate/:id" , (req, res, next) =>{
+routerCandidate.post("/editCandidate/:id" , fileUploader.single('image'), (req, res, next) =>{
   const { id } = req.params;
   const { name, lastName, phone, city, skills, wage, password } = req.body;
+  
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else {
+    imageUrl = req.body.existingImage;
+  }
 
   if (!lastName || !city || !password || !phone|| !skills|| !name|| !wage ) {
     res.render('candidate/editProfileCandidate', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
@@ -134,7 +148,7 @@ const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     return;
   }
 
-  Candidate.findByIdAndUpdate(id, { name, lastName, phone, city, skills, wage, passwordHash: password }, {new: true})
+  Candidate.findByIdAndUpdate(id, { name, lastName, phone, city, skills, wage, passwordHash: password, imageUrl }, {new: true})
   .then(candidateFromDB => {
     console.log(candidateFromDB);
     req.session.currentUser = candidateFromDB;

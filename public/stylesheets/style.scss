@@ -3,6 +3,14 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+h2 {
+  padding-top: 0.5ch;
+  font-size: 2.5vw;
+}
+h3 {
+  padding-top: 0.5ch;
+  font-size: 1.5vw;
+}
 
 
 #container{
@@ -80,6 +88,25 @@ body {
   margin-left: -5%;
   padding-right: 2.5vw;
 }
+//profile Candidato
+#button-back-profileCandidate > a { 
+  text-decoration: none;
+  color: white;
+}
+#form-edit-candidate {
+  padding-right: 40vw;
+}
+#back-profile-candidate > a {
+  text-decoration: none;
+  color: white;
+}
+#cad-candidate {
+  padding-right: 40vw;
+}
+#button-back-profile-candidate > a {
+  text-decoration: none;
+  color: white;
+}
 
 
 //Estilização Recrutador
@@ -118,6 +145,44 @@ body {
   margin-top: 10%;
   margin-left: 5%;
   padding-right: 2.5vw;
+}
+// profile recrutador
+figure > img{
+  width:200px;
+  height:200px;
+}
+#button-create-job > a{
+  text-decoration: none;
+  color: white;
+}
+#button-edit-profile-recruiter > a{
+  text-decoration: none;
+  color: white;
+}
+#button-back-profile-recruiter > a{
+  text-decoration: none;
+  color: white;
+}
+#button-back-profileRecruiter > a {
+  text-decoration: none;
+  color: white;
+}
+#form-edit-recruiter {
+  padding-right: 40vw;
+}
+#new-job-recrutador{
+  padding-right: 40vw;
+}
+#cad-recruiter {
+  padding-right: 40vw;
+}
+#button-back-profileRecruiter > a {
+  text-decoration: none;
+  color: white;
+}
+// login
+#form-login{
+  padding-right: 40vw;  
 }
 
 // Estilização Página Detalhes Candidato
@@ -176,6 +241,7 @@ body {
   text-decoration: none;
   color: white;
 }
+<<<<<<< HEAD
 
 #figure-caption {
   text-align: center;
@@ -192,3 +258,5 @@ body {
   font-weight: bold;
   margin-top: -21%;
 }
+=======
+>>>>>>> 65ebebccdf33bd7813fccf23cfd08f48ae933744
