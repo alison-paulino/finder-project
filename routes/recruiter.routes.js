@@ -13,7 +13,7 @@ routerRecruiter.get('/recruiterPre', (req, res)=>{
     formRecruiter =`
     <form action="/recruiterPre" method="POST" class="form-group">
      <label for="name"></label>
-     <input type="text" name="name" id="name-recruiter" placeholder="Nome" class="form-control">
+     <input type="text" name="name" id="name-recruiter" placeholder="Nome" class="form-control" autofocus>
      <label for="email"></label>
      <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
      <br>

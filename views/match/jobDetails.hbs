@@ -4,7 +4,12 @@
 <p>Cidade:{{jobFromDB.city}}</p>
 <p>Empresa:{{jobFromDB.company}}</p>
 <p>Salario:{{jobFromDB.wage}}</p>
+<p>Skills:{{jobFromDB.skills}}</p>
 <p>Recrutador:{{jobFromDB.recruiter_id.name}} {{jobFromDB.recruiter_id.lastName}}</p>
 
 <h2>Envie um email para o recrutador:</h2>
 <p>Email do Recrutador:{{jobFromDB.recruiter_id.email}}</p>
+<p>Telefone do Recrutador:{{jobFromDB.recruiter_id.phone}}</p>
+<form action="/matchJob/{{currentUser._id}}" method="POST"> 
+<button type="submit" class="btn btn-primary">Voltar</button>
+</form>
