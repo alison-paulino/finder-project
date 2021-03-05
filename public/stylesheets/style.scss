@@ -146,6 +146,7 @@ h3 {
   margin-left: 5%;
   padding-right: 2.5vw;
 }
+<<<<<<< HEAD
 // profile recrutador
 figure > img{
   width:200px;
@@ -184,3 +185,37 @@ figure > img{
 #form-login{
   padding-right: 40vw;  
 }
+=======
+
+// Estilização Página Detalhes Candidato
+#topo-candidato{
+  background-color: #87023E;
+  margin-top: 3%;
+  height: 0.5vw;
+  width: 100%;
+}
+
+// Estilização Página Match Vagas
+
+#topo-recrutador{
+  background-color: #111193;
+  margin-top: 3%;
+  height: 0.5vw;
+  width: 100%;
+}
+
+#textos-match-vaga{
+  margin-top: 3%;
+  color: #707070;
+}
+
+#cards-recrutador{
+  display: flex;
+  justify-content: space-around;
+}
+
+#button-back-profileRecruiter {
+  text-decoration: none;
+  color: white;
+}
+>>>>>>> 2eb1a5f3adc9d76a7666c6927970c0f3b722de4b

@@ -1,20 +1,31 @@
+<div id="topo-recrutador">
+  </div>
 
-<button type="submit" id="button-back-profileRecruiter" class="btn btn-primary">
+<div id="textos-match-vaga">
+<h2>Olá, {{currentUser.name}}</h2>
+<h3>Aqui estão todos os candidatos com as skills específicas para as suas vagas:</h3>
+</div>
+  <div id="cards-recrutador">
+      {{#each matchedJobs }}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Vaga: {{this.title}}</h5>
+      </div>
+          <img src="" class="card-img-top" alt="...">
+          {{#each this.candidates}}
+        <ul class="list-group list-group-flush">
+          <a href="candidateDetails/{{this._id}}">
+          <li class="list-group-item">Name: {{this.name}}</li>
+          </a>
+          <li class="list-group-item">Skills: {{this.skills}}</li>
+        </ul>
+          {{/each}}
+    </div>
+          {{/each}}
+  </div>
+
+<div>
+<button type="submit" class="btn btn-primary" id="button-back-profileRecruiter">
 <a href="/profileRecruiter" >Voltar</a></button>
-<h1>{{currentUser.name}}</h1>
+</div>
 
-<p>Aqui estão todos os candidatos com as skills específicas para as suas vagas:</p>
-
-{{#each matchedJobs }}
-<p>Vaga:{{this.title}}</a></p>
-{{#each this.candidates}}
-<a href="candidateDetails/{{this._id}}">
-<p>Name:{{this.name}}</p>
-</a>
-<p>E-mail:{{this.email}}</p>
-<p>Skills:{{this.skills}}</p>
-{{/each}}
-{{/each}}
-{{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
