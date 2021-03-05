@@ -1,33 +1,32 @@
  <h2>Olá, {{candidateFromDB.name}} <br>, por favor, edite suas informações</h2>
   <div id="edit-recruiter"></div>
  <figure>
-  <img src="https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true" alt="Minha Figura">
- </figure>
+    <img src="{{candidateFromDB.imageUrl}}" alt="Minha Figura">
+  </figure>
  <div>
  
-<form action = "/editCandidate/{{candidateFromDB._id}}" method = "post">
+<form action = "/editCandidate/{{candidateFromDB._id}}" method = "post" enctype="multipart/form-data">
+    <div id="form-edit-candidate" class="form-group">
     <label for="name">Nome</label>
-    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{candidateFromDB.name}} ">
-    </br></br>
+    <input type="text" name="name" id="name-candidate" placeholder="Nome" value="{{candidateFromDB.name}}" class="form-control">
     <label for="lastName">Sobrenome</label>
-    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="{{candidateFromDB.lastName}}">
-    </br></br>
+    <input type="text" name="lastName" id="last-candidate" placeholder="Sobrenome" value="{{candidateFromDB.lastName}}" class="form-control">
     <label for="city">Cidade</label>
-    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="{{candidateFromDB.city}}">
-    </br></br>
+    <input type="text" name="city" id="city-candidate" placeholder="Cidade da Empresa" value="{{candidateFromDB.city}}" class="form-control">
     <label for="phone">Telefone</label>
-    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="{{candidateFromDB.phone}}">
-    </br></br>
+    <input type="text" name="phone" id="phone-candidate" placeholder="Telefone" value="{{candidateFromDB.phone}}" class="form-control">
     <label for="skills">Skills - Descreva 05 (cinco) Skills</label>
-    <input type="text" name="skills" id="skills" placeholder="Skills" value="{{candidateFromDB.skills}}">
-    </br></br>
+    <input type="text" name="skills" id="skills-candidate" placeholder="Skills" value="{{candidateFromDB.skills}}" class="form-control">
     <label for="wage">Salário Base</label>
-    <input type="text" name="wage" id="wage" placeholder="Salário Base" value="{{candidateFromDB.wage}}">
-    </br></br>
+    <input type="text" name="wage" id="wage-candidate" placeholder="Salário Base" value="{{candidateFromDB.wage}}" class="form-control">
     <label for="password">Password</label>
-    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
-    </br></br>
-    <button type="submit" id="update-recruiter">Salvar</button>
+    <input type="password" name="password" id="password-candidate" placeholder="********" class="form-control"/>
+    <label for="image-input">Imagem:</label>
+    <input type="file" name="image" id="image-input" class="form-control-file" />
+    <input type="text" name="existingImage" hidden id="" value="{{candidateFromDB.imageUrl}}">
+    <br>
+    <button type="submit" id="update-candidate" class="btn btn-primary" >Salvar</button>
+    <button  id="button-back-profile-candidate"  class="btn btn-primary"> <a href="/profileCandidate">Voltar</a></button>
     </form>
 {{{formListRecruiter}}}
 </div>

@@ -38,6 +38,9 @@ const recruiterSchema = new Schema(
         type: String,
         required: [true, 'Empresa é obrigatório'],
       },
+      imageUrl: {
+        type: String,
+    } 
   },
   {
     timestamps : true

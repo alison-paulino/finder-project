@@ -1,12 +1,12 @@
 
-<button type="submit" id="button-back-profileRecruiter">
+<button type="submit" id="button-back-profileRecruiter" class="btn btn-primary">
 <a href="/profileRecruiter" >Voltar</a></button>
 <h1>{{currentUser.name}}</h1>
 
 <p>Aqui estão todos os candidatos com as skills específicas para as suas vagas:</p>
 
 {{#each matchedJobs }}
-<p>Vaga:{{this.title}}"></a></p>
+<p>Vaga:{{this.title}}</a></p>
 {{#each this.candidates}}
 <a href="candidateDetails/{{this._id}}">
 <p>Name:{{this.name}}</p>
@@ -15,3 +15,6 @@
 <p>Skills:{{this.skills}}</p>
 {{/each}}
 {{/each}}
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}

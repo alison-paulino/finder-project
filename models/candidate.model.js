@@ -44,7 +44,10 @@ const candidateSchema = new Schema(
         },
         job_id: {
             type: Schema.Types.ObjectId, ref: 'Job'
-          }
+          },
+        imageUrl: {
+            type: String,
+        } 
     },
     {
         timestamps: true

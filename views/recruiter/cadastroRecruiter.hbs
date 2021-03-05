@@ -1,35 +1,31 @@
 <h1>Bem-vindo ao seu perfil, {{name}}</h1>
 
 <h2>Por favor, complete o seu cadastro</h2>
-<form action="/createRecruiter" method="POST">
+<form action="/createRecruiter" method="POST"enctype="multipart/form-data">
+  <div id="cad-recruiter" class="form-group">
     <label for="name">Nome</label>
-    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{name}}">
-    </br></br>
+    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{name}}" class="form-control">
     <label for="lastName">Sobrenome</label>
-    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome">
-    </br></br>
+    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" class="form-control">
     <label for="email" >Email</label>
-    <input type="email" name="email" id="email-recruiter" placeholder="E-mail" value="{{email}}">
-    </br></br>
+    <input type="email" name="email" id="email-recruiter" placeholder="E-mail" value="{{email}}" class="form-control">
     <label for="city">Cidade</label>
-    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa">
-    </br></br>
+    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" class="form-control">
     <label for="phone">Telefone</label>
-    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone">
-    </br></br>
+    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" class="form-control">
     <label for="company">Empresa</label>
-    <input type="text" name="company" id="company" placeholder="Empresa onde trabalha"">
-    </br></br>
+    <input type="text" name="company" id="company" placeholder="Empresa onde trabalha" class="form-control">
     <label for="password">Password</label>
-    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
-     </br></br>
-    
-    <button type="submit" id="create-recruiter">Salvar</button>
-       
+    <input type="password" name="password" id="password-recruiter" placeholder="********" class="form-control"/>
+    <label for="image-input">Imagem:</label>
+    <input type="file" name="image" id="image-candidate" />
+    </br></br>
+    <button type="submit" id="create-recruiter" class="btn btn-primary">Salvar</button>
+  </div>
+</form>  
     {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
  
-  </form>
 
 

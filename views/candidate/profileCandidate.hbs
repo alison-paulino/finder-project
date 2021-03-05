@@ -1,62 +1,24 @@
 
 <h2>Bem-vindo, {{currentUser.name}} </h2>
   <div id="edit-recruiter"></div>
- <figure>
-  <img src="https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true" alt="Minha Figura">
- </figure>
- <div>
-  {{#if flag}}
-<form action = "/editRecruiter/{{currentUser._id}}" method = "post">
-    <label for="name">Nome</label>
-    <input type="text" name="name" id="name-recruiter" placeholder="Nome" value="{{currentUser.name}} ">
-    </br></br>
-    <label for="lastName">Sobrenome</label>
-    <input type="text" name="lastName" id="last-recruiter" placeholder="Sobrenome" value="{{currentUser.lastName}}">
-    </br></br>
-    <label for="city">Cidade</label>
-    <input type="text" name="city" id="city-recruiter" placeholder="Cidade da Empresa" value="{{currentUser.city}}">
-    </br></br>
-    <label for="phone">Telefone</label>
-    <input type="text" name="phone" id="phone-recruiter" placeholder="Telefone" value="{{currentUser.phone}}">
-   </br></br>
-    <label for="skills">Skills </label>
-    <input type="text" name="skills" id="skills" placeholder="Skills" value="{{currentUser.skills}}">
-    </br></br>
-    <label for="wage">Salário Base</label>
-    <input type="text" name="wage" id="wage" placeholder="Salário Base" value="{{currentUser.wage}}">
-    </br></br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password-recruiter" placeholder="********"/>
-    </br></br>
-    <button type="submit" id="update-recruiter">Salvar</button>
-    </form>
-
- {{/if}}
-  {{{formListRecruiter}}}
-</div>
-</div>
-<p>Agora você pode aproveitar todos os benefícios de usar o Finder</p>
-<div>
-  <button type="submit" id="edit-profile-recruiter">
-  <a href="/editCandidate/{{currentUser._id}}" >Edit seus dados</a>
-  <br>
+  <figure>
+    <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
+  </figure>
+  <div>
+    {{{formListRecruiter}}}
+  </div>
+  
+  <p>Agora você pode aproveitar todos os benefícios de usar o Finder</p>
+  <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
+    <a href="/editCandidate/{{currentUser._id}}" >Edit seus dados</a>
   </button>
-</div> 
-<br><br>
-
-<div>
- </br></br>
-<form action="/matchJob/{{currentUser._id}}" method="post" id="match-form-candidate">
-  <button type="submit" id="button-match-candidate"> Match</button>
-<br>
+  <br><br>
+  <form action="/matchJob/{{currentUser._id}}" method="post" id="match-form-candidate">
+    <button type="submit" id="button-match-candidate" class="btn btn-primary"> Match</button>
   </form>
-</div> 
-
-<form action="/logout" method="post" id="logout-form">
-  <button type="submit" id="logout"> Logout</button>
-<br>
-  </form>
-</div> 
- {{#if errorMessage}}
+  <br>
+  
+  {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
+  </div>

@@ -1,7 +1,10 @@
-<button type="submit" id="button-back-profileCandidate">
-<a href="/profileCandidate" >Voltar</a></button>
+<button type="submit" id="button-back-profileCandidate" class="btn btn-primary">
+<a href="/profileCandidate" >Voltar</a>
+</button>
 <h1>{{currentUser.name}},</h1>
+
 <p>Aqui estão todas as vagas correspondentes as suas skills:</p>
+
 {{#each resultJobs }}
 <a href="jobDetails/{{this._id}}">
 <p>Nome da Vaga:{{this.title}}></p>
@@ -11,6 +14,8 @@
 <p>Skills:{{this.skills}}</p>
 <p>Salario:{{this.wage}}</p>
 <p>Recrutador:{{this.recruiter_id.name}} {{this.recruiter_id.lastName}}</p>
-<p>Email do Recrutador:{{this.recruiter_id.email}}</p>
 {{/each}}
-<p>Entre em contato com o recrutador através do email.</p>
+
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
