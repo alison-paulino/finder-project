@@ -96,4 +96,28 @@ body {
   margin-left: 5%;
   padding-right: 2.5vw; }
 
+#topo-candidato {
+  background-color: #87023E;
+  margin-top: 3%;
+  height: 0.5vw;
+  width: 100%; }
+
+#topo-recrutador {
+  background-color: #111193;
+  margin-top: 3%;
+  height: 0.5vw;
+  width: 100%; }
+
+#textos-match-vaga {
+  margin-top: 3%;
+  color: #707070; }
+
+#cards-recrutador {
+  display: flex;
+  justify-content: space-around; }
+
+#button-back-profileRecruiter {
+  text-decoration: none;
+  color: white; }
+
 /*# sourceMappingURL=style.css.map */
