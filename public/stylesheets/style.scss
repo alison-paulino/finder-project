@@ -186,12 +186,37 @@ figure > img{
 }
 
 // Estilização Página Detalhes Candidato
+#ficha-candidato{
+  margin-top: 3%;
+  color: #707070;
+}
+
+#ficha-candidato >p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #707070;
+  text-decoration: underline blue
+}
+
+
+// Estilização Página Match Vagas
 #topo-candidato{
   background-color: #87023E;
   margin-top: 3%;
   height: 0.5vw;
   width: 100%;
 }
+
+#textos-match-vaga-candidato{
+  margin-top: 3%;
+  color: #707070;
+}
+
+#cards-candidato{
+  display: flex;
+  justify-content: space-around;
+}
+
 
 // Estilização Página Match Vagas
 
@@ -216,3 +241,22 @@ figure > img{
   text-decoration: none;
   color: white;
 }
+<<<<<<< HEAD
+
+#figure-caption {
+  text-align: center;
+  color: white;
+  font-size: 120%;
+  font-weight: bold;
+  margin-top: -21%;
+}
+
+#figure-caption-jobs {
+  text-align: center;
+  color: white;
+  font-size: 120%;
+  font-weight: bold;
+  margin-top: -21%;
+}
+=======
+>>>>>>> 65ebebccdf33bd7813fccf23cfd08f48ae933744
