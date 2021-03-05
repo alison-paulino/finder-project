@@ -14,7 +14,7 @@ routerCandidate.get("/candidatePre", (req, res) => {
 
   <form action="/candidatePre" method="POST" class="form-group">
   <label for="name"></label>
-  <input type="text" name="name" id="name-candidato" placeholder="Nome" class="form-control">
+  <input type="text" name="name" id="name-candidato" placeholder="Nome" class="form-control" autofocus>
   <label for="email"></label>
   <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
   <br>
@@ -114,15 +114,15 @@ Candidate.create ({ name, lastName, email, phone, city, skills : newSkills, wage
 // rota get para pegar id e trazer dados para edição
 routerCandidate.get("/editCandidate/:id", (req, res) => {
   const { id } = req.params;
+  const { currentUser } = req.session;
 
   Candidate.findById(id)
     .then((candidateFromDB) => {
-      if(!req.session.currentUser){
+      if(!currentUser){
         res.redirect('/');
         return;
       }
-      
-      res.render("./candidate/editProfileCandidate", {candidateFromDB})
+      res.render("./candidate/editProfileCandidate", {candidateFromDB,currentUser})
     })
     .catch(error => console.log('Erro do edit', error));
 });
@@ -130,7 +130,7 @@ routerCandidate.get("/editCandidate/:id", (req, res) => {
 routerCandidate.post("/editCandidate/:id" , fileUploader.single('image'), (req, res, next) =>{
   const { id } = req.params;
   const { name, lastName, phone, city, skills, wage, password } = req.body;
-  
+  const { currentUser } = req.session;
   let imageUrl;
   if (req.file) {
     imageUrl = req.file.path;
@@ -139,19 +139,22 @@ routerCandidate.post("/editCandidate/:id" , fileUploader.single('image'), (req, 
   }
 
   if (!lastName || !city || !password || !phone|| !skills|| !name|| !wage ) {
-    res.render('candidate/editProfileCandidate', { errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
+    res.render('candidate/editProfileCandidate', {currentUser, errorMessage: 'Todos os campos são mandatorios. Por favor verifique o preenchimento' });
     return;
   }
 const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
-    res.status(500).render('canditate/editProfileCandidate', { flag: true , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
+    res.status(500).render('canditate/editProfileCandidate', { currentUser , errorMessage: 'Password precisa ter pelo menos 6 caracteres, possuir pelo menos 1 numeral, 1 letra maiuscula e uma letra minuscula! e 1 caracter especial' });
     return;
   }
 
   Candidate.findByIdAndUpdate(id, { name, lastName, phone, city, skills, wage, passwordHash: password, imageUrl }, {new: true})
   .then(candidateFromDB => {
-    console.log(candidateFromDB);
-    req.session.currentUser = candidateFromDB;
+    if(!currentUser){
+      res.redirect('/');
+      return;
+    }
+    
     res.redirect("/profileCandidate");
   })
 

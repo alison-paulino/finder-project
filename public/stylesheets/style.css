@@ -155,6 +155,10 @@ figure > img {
   text-decoration: none;
   color: white; }
 
+#button-back-details-recruiter > a {
+  text-decoration: none;
+  color: white; }
+
 #form-login {
   padding-right: 40vw; }
 

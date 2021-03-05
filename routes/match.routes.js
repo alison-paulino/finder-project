@@ -12,8 +12,11 @@ matchRouter.get('/matchCandidate/candidateDetails/:id', (req, res) =>{
 	const { currentUser } = req.session;
   Candidate.findById(id)
 		.then((candidateFromDB) => {
-      
-			res.render('match/candidateDetails', { candidateFromDB, currentUser });
+			if(!req.session.currentUser){
+				res.redirect('/');
+				return;
+			}
+      res.render('match/candidateDetails', { candidateFromDB, currentUser });
 		});
 })
 
@@ -36,7 +39,7 @@ matchRouter.post('/matchCandidate/:id', async (req, res) => {
 			query.$or.push({ skills: { $all: [jobsFromDB[i].skills[j]] } });
 		}
 		try {
-			// verificar com gabriel e dk
+		
 			resultJobs = await Candidate.find(query);
 				console.log("retorno find candidatos",resultJobs);
 				
@@ -58,7 +61,7 @@ matchRouter.post('/matchCandidate/:id', async (req, res) => {
 
 matchRouter.get('/matchJob/jobDetails/:id', (req, res) => {
 	const { id } = req.params;
-	
+	const { currentUser } = req.session;
 	Job.findById(id)
 		.populate('recruiter_id')
 		.then((jobFromDB) => {

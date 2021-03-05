@@ -9,6 +9,10 @@
 <p>Sobrenome:{{candidateFromDB.name}}</p>
 <p>Cidade:{{candidateFromDB.city}}</p>
 <p>Salario pretendido:{{candidateFromDB.wage}}</p>
-
-<h2>Envie um email para o recrutador:</h2>
-<p>email:{{candidateFromDB.email}}</p>
+<p>Skilss:{{candidateFromDB.skills}}</p>
+<h2>Entre em contato com o candidato:</h2>
+<p>E-mail:{{candidateFromDB.email}}</p>
+<p>Telefone:{{candidateFromDB.phone}}</p>
+<form action="/matchCandidate/{{currentUser._id}}" method="POST"> 
+<button type="submit" class="btn btn-primary">Voltar</button>
+</form>
