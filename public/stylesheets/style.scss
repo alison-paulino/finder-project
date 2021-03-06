@@ -11,7 +11,14 @@ h3 {
   padding-top: 0.5ch;
   font-size: 1.5vw;
 }
-
+.p-estilizacao {
+  color: #707070;
+  font-weight: bold;
+}
+.textos-header{
+  margin-top: 1%;
+  color: #707070;
+}
 
 #container{
   display:flex;
@@ -147,6 +154,24 @@ h3 {
   padding-right: 2.5vw;
 }
 // profile recrutador
+#container-profile-recruiter{
+  display: flex;
+  justify-content: space-between;
+}
+#button-match-recruiter {
+  margin-top: 10%;
+  border: none;
+  background-color: white;
+  
+}
+#button-match-recruiter > img{
+  width: 65%;
+  height: auto;
+  text-decoration: none;
+}
+.textos-header > h4 {
+  margin-top: 3%;
+}
 figure > img{
   width:200px;
   height:200px;
@@ -180,10 +205,28 @@ figure > img{
   text-decoration: none;
   color: white;
 }
+#button-profile-recruiter{
+  display:flex;
+  justify-content: flex-start;
+}
+#div-button-create-job{
+  padding-left: 4%;
+}
 // Estilização Página Detalhes Recrutador
 #button-back-details-recruiter > a{
   text-decoration: none;
   color: white;
+}
+#ficha-job{
+  margin-top: 3%;
+  color: #707070;
+}
+
+#ficha-job >p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #707070;
+  text-decoration: underline blue
 }
 
 // login
@@ -206,17 +249,14 @@ figure > img{
 
 
 // Estilização Página Match Vagas
-#topo-candidato{
+.topo-candidato{
   background-color: #87023E;
   margin-top: 3%;
   height: 0.5vw;
   width: 100%;
 }
 
-#textos-match-vaga-candidato{
-  margin-top: 3%;
-  color: #707070;
-}
+
 
 #cards-candidato{
   display: flex;
@@ -248,12 +288,13 @@ figure > img{
   color: white;
 }
 
-#figure-caption {
+#figure-caption-candidate {
   text-align: center;
   color: white;
   font-size: 120%;
   font-weight: bold;
-  margin-top: -21%;
+  margin-top: -8vw;
+  
 }
 
 #figure-caption-jobs {
@@ -261,5 +302,7 @@ figure > img{
   color: white;
   font-size: 120%;
   font-weight: bold;
-  margin-top: -21%;
+  margin-top: -8vw;
+  text-decoration:  underline white;
+  
 }
