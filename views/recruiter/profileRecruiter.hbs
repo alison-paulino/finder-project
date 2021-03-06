@@ -1,24 +1,25 @@
 <div id="topo-recrutador"></div>
-  <div id="container-profile-recruiter">
-      <div>
-        <div class="textos-header">
-          <h2>Bem-vindo, {{currentUser.name}}!</h2>
-        </div>
-        <div id="edit-recruiter"></div>
-        <figure>
-        <img src="{{currentUser.imageUrl}}" alt="Minha Figura"></figure>
-      </div>
-      <div>
-        <div class="textos-header">
-          <h4>Click no match e encontre os candidados para as vagas:</h4>
-        </div>
-        <form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs">
-        
-          <button type="submit" id="button-match-recruiter" > <img src="/images/match-button1.png" alt=""></button>
-          <br>
-        </form>
-      </div>
-  </div>  
+<div id="container-profile-recruiter">
+  <div>
+    <div class="textos-header">
+      <h2>Bem-vindo, {{currentUser.name}}!</h2>
+    </div>
+    <div id="edit-recruiter"></div>
+    <figure>
+      <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
+    </figure>
+  </div>
+  <div>
+    <div class="textos-header">
+      <h4>Dê um match e encontre candidados para suas vagas:</h4>
+    </div>
+    <form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs">
+
+      <button type="submit" id="button-match-recruiter"> <img src="/images/match-button1.png" alt=""></button>
+      <br>
+    </form>
+  </div>
+</div>
 
 <p class="p-estilizacao">Agora você pode aproveitar todos os benefícios do Finder</p>
 <div>
@@ -41,12 +42,12 @@
       </div>
       <button class="btn btn-primary">Mostrar vagas</button>
     </form>
-    
+
     {{#each jobsFromDB}}
     {{this.title}}<br>
     {{/each}}
-   
-  
+
+
   </div>
 </div>
 

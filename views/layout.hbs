@@ -29,17 +29,21 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/recruiterPre">Recrutadores</a>
           </li>
-          <li class="nav-item">
+         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Quem somos</a>
-          </li>
+          </li> 
           <li class="nav-item">
             <div class="container-fluid">
-            
+
               {{#if currentUser }}
-              <button class="btn btn-outline-secondary" type="submit"><a href="/logout">Logout</a></button>
+               <a href="/logout">
+              <button id="button-logout" class="btn btn-outline-secondary" type="submit">Logout</button>
+              </a>
               {{else}}
-              <button class="btn btn-outline-secondary" type="submit"><a href="/login">Login</a></button>
-            {{/if}}
+              <a href="/login">
+              <button id="button-login" class="btn btn-outline-secondary" type="submit">Login</button>
+              </a>
+              {{/if}}
             </div>
           </li>
         </ul>
@@ -59,6 +63,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
   <script src="/javascripts/script.js"></script>
+ 
 </body>
 
 </html>

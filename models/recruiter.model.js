@@ -30,7 +30,7 @@ const recruiterSchema = new Schema(
         required: [true, 'Cidade é obrigatório'],
       },
       phone: {
-        type: Number,
+        type: String,
         required: [true, 'Telefone é obrigatório'],
       },
 

@@ -1,26 +1,26 @@
 <div id="topo-recrutador"></div>
-  <div class="textos-header">
-    <h1>Cadastrar Nova Vaga </h1>
-    <h2>Preencha os dados abaixo:</h2>
+<div class="textos-header">
+  <h1>Cadastrar Nova Vaga </h1>
+  <h2>Preencha os dados abaixo:</h2>
 </div>
 <form action="/createJob/{{id}}" method="POST">
   <div id="new-job-recrutador" class="form-group">
-  <label for="title">Título da vaga</label>
-  <input type="text" name="title" id="name-job" placeholder="Nome" class="form-control">
-  <label for="city">Cidade</label>
-  <input type="text" name="city" id="city-job" placeholder="Cidade" class="form-control">
-  <label for="skills">Skills - Descreva 05 (cinco) Skills (Separando-as por "," VIRGULA)</label>
-  <input type="text" name="skills" id="skills-job" placeholder="Skills" class="form-control">
-  <label for="wage">Salário Base</label>
-  <input type="text" name="wage" id="wage-job" placeholder="Salário Base" class="form-control">
-  <label for="company">Empresa</label>
-  <input type="text" name="company" id="company-job" placeholder="Empresa" class="form-control">
-  </br>
-  <button type="submit" id="criar-vaga" class="btn btn-primary">Criar</button>
-  <div>
-  </form>
+    <label for="title">Título da vaga</label>
+    <input type="text" name="title" id="name-job" placeholder="Nome" class="form-control">
+    <label for="city">Cidade</label>
+    <input type="text" name="city" id="city-job" placeholder="Cidade" class="form-control">
+    <label for="skills">Skills - Descreva 05 (cinco) Skills (Separando-as por "," VIRGULA)</label>
+    <input type="text" name="skills" id="skills-job" placeholder="Skills" class="form-control">
+    <label for="wage">Salário Base</label>
+    <input type="text" name="wage" id="wage-job" placeholder="Salário Base" class="form-control">
+    <label for="company">Empresa</label>
+    <input type="text" name="company" id="company-job" placeholder="Empresa" class="form-control">
+    </br>
+    <button type="submit" id="criar-vaga" class="btn btn-primary">Criar</button>
+    <button id="button-back-profile-recruiter" class="btn btn-primary"> <a href="/profileRecruiter">Voltar</a></button>
+    <div>
+</form>
 
-  {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
-   
+{{#if errorMessage}}
+<p class="error">{{errorMessage}}</p>
+{{/if}}

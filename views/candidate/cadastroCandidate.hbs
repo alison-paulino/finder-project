@@ -1,10 +1,10 @@
 <div class="topo-candidato">
-  </div>
+</div>
 <div class="textos-header">
   <h2>Olá, {{name}}! Por favor, complete o seu cadastro</h2>
 </div>
 <form action="/createCandidate" method="POST" enctype="multipart/form-data">
-  <div id="cad-candidate" class="form-group"> 
+  <div id="cad-candidate" class="form-group">
     <label for="name">Nome</label>
     <input type="text" name="name" id="name-candidate" placeholder="Nome" value="{{name}}" class="form-control">
     <label for="lastName">Sobrenome</label>
@@ -29,7 +29,5 @@
 </form>
 
 {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
-
-
+<p class="error">{{errorMessage}}</p>
+{{/if}}
