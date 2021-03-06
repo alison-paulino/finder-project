@@ -35,6 +35,7 @@
       </button>
     </div>
   </div>
+</div>  
   <div>
     <form action="/listJobs/{{currentUser._id}}" method="POST">
       <div class="textos-header">
@@ -46,13 +47,9 @@
     {{#each jobsFromDB}}
     {{this.title}}<br>
     {{/each}}
-
-
   </div>
-</div>
-
 
 </br></br>
 {{#if errorMessage}}
-<p class="error">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}

@@ -3,16 +3,14 @@ const Candidate = require('../models/candidate.model');
 const fileUploader = require('../configs/cloudinary.config');
 const routerCandidate = express.Router();
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const saltRound = 10;
+const bcryptjs = require('bcryptjs');
+const saltRounds = 10;
 
-// rota get renderizar formulario de pre cadastro
+// route get render form  pre registration
 routerCandidate.get('/candidatePre', (req, res) => {
 	let formCandidate = '';
-
-	formCandidate = `
-
-  <form action="/candidatePre" method="POST" class="form-group">
+formCandidate = `
+<form action="/candidatePre" method="POST" class="form-group">
   <label for="name"></label>
   <input type="text" name="name" id="name-candidato" placeholder="Nome" class="form-control" autofocus>
   <label for="email"></label>
@@ -21,11 +19,9 @@ routerCandidate.get('/candidatePre', (req, res) => {
   <button type="submit" class="btn btn-primary">Criar</button>
  </form>
  `;
-
 	res.render('index', { formCandidate });
 });
 
-// rota post para pegar dados formularios pre cadastro e renderizar cadastro completo
 routerCandidate.post('/candidatePre', (req, res) => {
 	const { name, email } = req.body;
 	console.log(req.body);
@@ -42,11 +38,11 @@ routerCandidate.get('/profileCandidate', (req, res) => {
 	res.render('candidate/profileCandidate', { currentUser: req.session.currentUser });
 });
 
-// rota get renderizar formulario cadastro candidate
+
 routerCandidate.get('/createCandidate', (req, res, next) =>
 	res.render('candidate/cadastroCandidate', { currentUser: req.session.currentUser })
 );
-// rota post pegar dados formulario e criar candidato no banco
+
 routerCandidate.post('/createCandidate', fileUploader.single('image'), (req, res, next) => {
 	const { name, lastName, email, phone, city, skills, wage, password } = req.body;
 
@@ -67,10 +63,10 @@ routerCandidate.post('/createCandidate', fileUploader.single('image'), (req, res
 		return;
 	}
 
-	const salt = bcrypt.genSaltSync(saltRound);
-	const hashedPassword = bcrypt.hashSync(password, salt);
-	newSkills = skills.split(',');
-	console.log(newSkills);
+	const salt = bcryptjs.genSaltSync(saltRounds);
+	const hashedPassword = bcryptjs.hashSync(password, salt);
+	let newSkills = skills.split(',');
+	
 	Candidate.create({
 		name,
 		lastName,
@@ -83,7 +79,6 @@ routerCandidate.post('/createCandidate', fileUploader.single('image'), (req, res
 		imageUrl: req.file.path,
 	})
 		.then((candidateFromDB) => {
-			console.log(candidateFromDB);
 			req.session.currentUser = candidateFromDB;
 			res.redirect('/profileCandidate');
 		})
@@ -101,7 +96,6 @@ routerCandidate.post('/createCandidate', fileUploader.single('image'), (req, res
 		});
 });
 
-// rota get para pegar id e trazer dados para edição
 routerCandidate.get('/editCandidate/:id', (req, res) => {
 	const { id } = req.params;
 	const { currentUser } = req.session;
@@ -116,11 +110,12 @@ routerCandidate.get('/editCandidate/:id', (req, res) => {
 		})
 		.catch((error) => console.log('Erro do edit', error));
 });
-// rota post pegar dados do formulario editado e alterar no banco
+
 routerCandidate.post('/editCandidate/:id', fileUploader.single('image'), (req, res, next) => {
 	const { id } = req.params;
 	const { name, lastName, phone, city, skills, wage, password } = req.body;
 	const { currentUser } = req.session;
+	let newSkills = skills.split(',');
 	let imageUrl;
 	if (req.file) {
 		imageUrl = req.file.path;
@@ -144,12 +139,14 @@ routerCandidate.post('/editCandidate/:id', fileUploader.single('image'), (req, r
 		});
 		return;
 	}
-
+	const salt = bcryptjs.genSaltSync(saltRounds);
+	const hash1 = bcryptjs.hashSync(password, salt);
 	Candidate.findByIdAndUpdate(
 		id,
-		{ name, lastName, phone, city, skills, wage, passwordHash: password, imageUrl },
+		{ name, lastName, phone, city, skills: newSkills, wage, passwordHash: hash1, imageUrl },
 		{ new: true }
 	)
+
 		.then((candidateFromDB) => {
 			if (!currentUser) {
 				res.redirect('/');

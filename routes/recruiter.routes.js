@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
-// rota get para rederizar pre cadastro
 routerRecruiter.get('/recruiterPre', (req, res) => {
 	let formRecruiter = '';
 	formRecruiter = `
@@ -23,7 +22,7 @@ routerRecruiter.get('/recruiterPre', (req, res) => {
 
 	res.render('index', { formRecruiter });
 });
-// rota post para receber pre cadastro e renderizar formulario complete cadastro
+
 routerRecruiter.post('/recruiterPre', (req, res) => {
 	const { name, email } = req.body;
 	console.log(req.body);
@@ -38,10 +37,8 @@ routerRecruiter.get('/profileRecruiter', (req, res) => {
 	res.render('recruiter/profileRecruiter', { currentUser: req.session.currentUser });
 });
 
-// rota post para receber cadastro e criar recrutador no banco
 routerRecruiter.post('/createRecruiter', fileUploader.single('image'), (req, res, next) => {
 	const { name, lastName, email, city, phone, company, password } = req.body;
-	console.log('SESSION =====> ', req.session);
 	const { currentUser } = req.session;
 
 	if (!lastName || !city || !password || !phone || !company) {
@@ -78,7 +75,6 @@ routerRecruiter.post('/createRecruiter', fileUploader.single('image'), (req, res
 		})
 
 		.then((recruiterFromDB) => {
-			console.log(`Recrutador criado com sucesso ${recruiterFromDB.name}`);
 			req.session.currentUser = recruiterFromDB;
 			res.redirect('/profileRecruiter');
 		})
@@ -96,7 +92,6 @@ routerRecruiter.post('/createRecruiter', fileUploader.single('image'), (req, res
 		});
 });
 
-// rota get para pegar id e trazer dados para edição
 routerRecruiter.get('/editRecruiter/:id', (req, res) => {
 	const { id } = req.params;
 
@@ -109,7 +104,6 @@ routerRecruiter.get('/editRecruiter/:id', (req, res) => {
 	});
 });
 
-// rota post pegar dados do formulario editado e alterar no banco
 routerRecruiter.post('/editRecruiter/:id', fileUploader.single('image'), (req, res, next) => {
 	const { id } = req.params;
 	const { name, lastName, city, phone, company, password } = req.body;
@@ -174,8 +168,6 @@ routerRecruiter.get('/createJob/:id', (req, res) => {
 
 	res.render('recruiter/newJob', { id });
 });
-// rota para pegar dados do formulario e criar vaga no banco
-
 routerRecruiter.post('/createJob/:id', (req, res, next) => {
 	const { id } = req.params;
 	const { title, city, skills, company, wage } = req.body;
@@ -191,7 +183,6 @@ routerRecruiter.post('/createJob/:id', (req, res, next) => {
 	let newSkills = skills.split(',');
 
 	Job.create({ title, city, wage, skills: newSkills, company, recruiter_id: id })
-
 		.then((jobFromDB) => {
 		
 			res.render('recruiter/profileRecruiter');

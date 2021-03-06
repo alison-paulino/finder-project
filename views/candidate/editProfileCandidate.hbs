@@ -8,7 +8,6 @@
   <img src="{{candidateFromDB.imageUrl}}" alt="Minha Figura">
 </figure>
 <div>
-
   <form action="/editCandidate/{{candidateFromDB._id}}" method="post" enctype="multipart/form-data">
     <div id="form-edit-candidate" class="form-group">
       <label for="name">Nome</label>
@@ -38,11 +37,10 @@
       <button type="submit" id="update-candidate" class="btn btn-primary">Salvar</button>
       <button id="button-back-profile-candidate" class="btn btn-primary"> <a
           href="/profileCandidate">Voltar</a></button>
+    </div> 
   </form>
-  {{{formListRecruiter}}}
-</div>
 </div>
 
 {{#if errorMessage}}
-<p class="error">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}
