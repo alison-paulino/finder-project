@@ -2,13 +2,9 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-h2 {
-  padding-top: 0.5ch;
-  font-size: 2.5vw; }
-
-h3 {
-  padding-top: 0.5ch;
-  font-size: 1.5vw; }
+#button-logout > a {
+  text-decoration: none;
+  background-color: blue; }
 
 .p-estilizacao {
   color: #707070;
@@ -80,6 +76,20 @@ h3 {
   margin-top: 10%;
   margin-left: -5%;
   padding-right: 2.5vw; }
+
+#container-profile-candidate {
+  display: flex;
+  justify-content: space-between; }
+
+#button-match-candidate {
+  margin-top: 10%;
+  border: none;
+  background-color: white; }
+
+#button-match-candidate > img {
+  width: 65%;
+  height: auto;
+  text-decoration: none; }
 
 #button-back-profileCandidate > a {
   text-decoration: none;

@@ -1,27 +1,32 @@
 <div class="topo-candidato"></div>
+<div id="container-profile-candidate">
+    <div>
+    <div class="textos-header">
+      <h2>Bem-vindo, {{currentUser.name}} </h2>
+    </div>
+    <div id="edit-recruiter"></div>
+    <figure>
+      <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
+    </figure>
+    </div>
+    <div>
+      <div class="textos-header">
+      <h4>Dê um match e encontre as vagas para seu perfil:</h4>
+    </div>
+      <form action="/matchJob/{{currentUser._id}}" method="post" id="match-form-candidate">
+        <button type="submit" id="button-match-candidate" ><img src="/images/match-button1.png" alt=""></button>
+      </form>
+    </div>
+  </div>  
+<p class="p-estilizacao">Agora você pode aproveitar todos os benefícios do Finder</p>
+<button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
+  <a href="/editCandidate/{{currentUser._id}}">Edit seus dados</a>
+</button>
+<br><br>
 
-<div class="textos-header">
-  <h2>Bem-vindo, {{currentUser.name}} </h2>
+<br>
+
+{{#if errorMessage}}
+<p class="error">{{errorMessage}}</p>
+{{/if}}
 </div>
-<div id="edit-recruiter"></div>
-  <figure>
-    <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
-  </figure>
-     <div>
-        {{{formListRecruiter}}}
-      </div>
-  
-  <p class="p-estilizacao">Agora você pode aproveitar todos os benefícios do Finder</p>
-  <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
-    <a href="/editCandidate/{{currentUser._id}}" >Edit seus dados</a>
-  </button>
-  <br><br>
-  <form action="/matchJob/{{currentUser._id}}" method="post" id="match-form-candidate">
-    <button type="submit" id="button-match-candidate" class="btn btn-primary"> Match</button>
-  </form>
-  <br>
-  
-  {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
-  </div>

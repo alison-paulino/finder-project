@@ -2,7 +2,7 @@
 
 (Module 2 . Project) - Alison Paulino e Paulo Duarte
 
-![Start Screen](/images/startscreen.png)
+![Start Screen](./public/images/startscreen.png)
 
 Click [HERE](https://finder-project.herokuapp.com/) to start your **find for a job or a talent** 
 ---

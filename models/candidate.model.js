@@ -14,7 +14,7 @@ const candidateSchema = new Schema(
             required: [true, 'Sobrenome é obrigatório.']
         },
         phone: {
-            type: Number,
+            type: String,
             required: [true, 'Telefone é obrigatório'],
         },
         city: {
