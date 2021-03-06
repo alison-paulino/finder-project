@@ -7,7 +7,6 @@
   <img src=" {{dadosList.imageUrl}} " alt="Minha Figura">
 </figure>
 <div>
-
   <form action="/editRecruiter/{{dadosList._id}}" method="post" enctype="multipart/form-data">
     <div id="form-edit-recruiter" class="form-group">
       <label for="name">Nome</label>
@@ -41,5 +40,5 @@
 </div>
 
 {{#if errorMessage}}
-<p class="error">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}

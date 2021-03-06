@@ -38,7 +38,7 @@ matchRouter.post('/matchCandidate/:id', async (req, res) => {
 		}
 		try {
 			resultJobs = await Candidate.find(query);
-			console.log('retorno find candidatos', resultJobs);
+			
 		} catch (error) {
 			console.log(error);
 		}

@@ -1,6 +1,7 @@
-<h1>Bem-vindo ao seu perfil, {{name}}</h1>
-
-<h2>Por favor, complete o seu cadastro</h2>
+<div id="topo-recrutador"></div>
+<div class="textos-header">
+<h2>Olá, {{name}}! Por favor, complete o seu cadastro</h2>
+</div>
 <form action="/createRecruiter" method="POST" enctype="multipart/form-data">
   <div id="cad-recruiter" class="form-group">
     <label for="name">Nome</label>
@@ -24,5 +25,5 @@
   </div>
 </form>
 {{#if errorMessage}}
-<p class="error">{{errorMessage}}</p>
+  <p class="error">{{errorMessage}}</p>
 {{/if}}
