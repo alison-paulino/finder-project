@@ -1,47 +1,57 @@
-<h2>Bem-vindo, {{currentUser.name}} </h2>
-  <div id="edit-recruiter"></div>
- <figure>
-  <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
- </figure>
- <div>
- {{{formListRecruiter}}}
-</div>
-</div>
-<p>Agora você pode aproveitar todos os benefícios de usar o Finder</p>
-<div>
-  <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
-  <a href="/editRecruiter/{{currentUser._id}}" >Edit seus dados</a>
-  <br>
-  </button>
-</div> 
-<div>
-<br>
-   <button type="submit" id="button-create-job" class="btn btn-primary">
-     <a href="/createJob/{{currentUser._id}}" >Crie suas Vagas</a>
-   </button>
-</div>
-<div>
-  <form action="/listJobs/{{currentUser._id}}" method="POST"> 
-  <h3>Aqui estão suas vagas criadas:</h3>
-  <button class="btn btn-primary">Mostrar vagas</button>
-  </form>
- {{#each jobsFromDB}}
-  {{this.title}}<br>
- {{/each}}
-<div>
+<div id="topo-recrutador"></div>
+  <div id="container-profile-recruiter">
+      <div>
+        <div class="textos-header">
+          <h2>Bem-vindo, {{currentUser.name}}!</h2>
+        </div>
+        <div id="edit-recruiter"></div>
+        <figure>
+        <img src="{{currentUser.imageUrl}}" alt="Minha Figura"></figure>
+      </div>
+      <div>
+        <div class="textos-header">
+          <h4>Click no match e encontre os candidados para as vagas:</h4>
+        </div>
+        <form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs">
+        
+          <button type="submit" id="button-match-recruiter" > <img src="/images/match-button1.png" alt=""></button>
+          <br>
+        </form>
+      </div>
+  </div>  
 
- <h3>Dê um match e encontre os candidados para as vagas:</h3>
-<form action="/matchCandidate/{{currentUser._id}}" method="post" id="match-form-jobs" >
-  <button type="submit" id="button-match-recruiter" class="btn btn-primary"> Match</button>
-<br>
-  </form>
-</div> 
-
- 
-</div>
+<p class="p-estilizacao">Agora você pode aproveitar todos os benefícios do Finder</p>
 <div>
- </br></br>
-</div> 
- {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
+  <div id="button-profile-recruiter">
+    <div>
+      <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
+        <a href="/editRecruiter/{{currentUser._id}}">Edit seus dados</a>
+      </button>
+    </div>
+    <div id="div-button-create-job">
+      <button type="submit" id="button-create-job" class="btn btn-primary">
+        <a href="/createJob/{{currentUser._id}}">Crie suas Vagas</a>
+      </button>
+    </div>
+  </div>
+  <div>
+    <form action="/listJobs/{{currentUser._id}}" method="POST">
+      <div class="textos-header">
+        <h3>Aqui estão suas vagas criadas:</h3>
+      </div>
+      <button class="btn btn-primary">Mostrar vagas</button>
+    </form>
+    
+    {{#each jobsFromDB}}
+    {{this.title}}<br>
+    {{/each}}
+   
+  
+  </div>
+</div>
+
+
+</br></br>
+{{#if errorMessage}}
+<p class="error">{{errorMessage}}</p>
+{{/if}}

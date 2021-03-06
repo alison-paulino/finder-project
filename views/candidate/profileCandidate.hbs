@@ -1,14 +1,17 @@
+<div class="topo-candidato"></div>
 
-<h2>Bem-vindo, {{currentUser.name}} </h2>
-  <div id="edit-recruiter"></div>
+<div class="textos-header">
+  <h2>Bem-vindo, {{currentUser.name}} </h2>
+</div>
+<div id="edit-recruiter"></div>
   <figure>
     <img src="{{currentUser.imageUrl}}" alt="Minha Figura">
   </figure>
-  <div>
-    {{{formListRecruiter}}}
-  </div>
+     <div>
+        {{{formListRecruiter}}}
+      </div>
   
-  <p>Agora você pode aproveitar todos os benefícios de usar o Finder</p>
+  <p class="p-estilizacao">Agora você pode aproveitar todos os benefícios do Finder</p>
   <button type="submit" id="button-edit-profile-recruiter" class="btn btn-primary">
     <a href="/editCandidate/{{currentUser._id}}" >Edit seus dados</a>
   </button>

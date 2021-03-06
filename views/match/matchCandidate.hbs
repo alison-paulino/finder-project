@@ -1,7 +1,5 @@
-<div id="topo-recrutador">
-  </div>
-
-<div id="textos-match-vaga">
+<div id="topo-recrutador"></div>
+<div class="textos-header">
 <h2>Olá, {{currentUser.name}}</h2>
 <h3>Aqui estão todos os candidatos com as skills específicas para as suas vagas:</h3>
 </div>
@@ -11,13 +9,13 @@
       <div class="card-body">
         <figure>
         <img src="/images/img-cards.png" class="card-img-top" alt="...">
-        <figcaption id="figure-caption">Vaga: {{this.title}}</figcaption>
+        <figcaption id="figure-caption-candidate">Vaga: {{this.title}}</figcaption>
         </figure>
       </div>
           {{#each this.candidates}}
         <ul class="list-group list-group-flush">
           <a href="candidateDetails/{{this._id}}">
-          <li class="list-group-item">Name: {{this.name}}</li>
+          <li class="list-group-item">Nome: {{this.name}}</li>
           </a>
           <li class="list-group-item">Skills: {{this.skills}}</li>
         </ul>

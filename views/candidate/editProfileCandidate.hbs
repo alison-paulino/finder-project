@@ -1,4 +1,8 @@
- <h2>Olá, {{candidateFromDB.name}} <br>, por favor, edite suas informações</h2>
+ <div class="topo-candidato"></div>
+
+<div class="textos-header">
+ <h2>Olá, {{candidateFromDB.name}}! Por favor, edite suas informações</h2>
+ </div>
   <div id="edit-recruiter"></div>
  <figure>
     <img src="{{candidateFromDB.imageUrl}}" alt="Minha Figura">
@@ -15,7 +19,7 @@
     <input type="text" name="city" id="city-candidate" placeholder="Cidade da Empresa" value="{{candidateFromDB.city}}" class="form-control">
     <label for="phone">Telefone</label>
     <input type="text" name="phone" id="phone-candidate" placeholder="Telefone" value="{{candidateFromDB.phone}}" class="form-control">
-    <label for="skills">Skills - Descreva 05 (cinco) Skills</label>
+    <label for="skills">Skills - Descreva 05 (cinco) Skills (Separando-as por "," VIRGULA)</label>
     <input type="text" name="skills" id="skills-candidate" placeholder="Skills" value="{{candidateFromDB.skills}}" class="form-control">
     <label for="wage">Salário Base</label>
     <input type="text" name="wage" id="wage-candidate" placeholder="Salário Base" value="{{candidateFromDB.wage}}" class="form-control">
